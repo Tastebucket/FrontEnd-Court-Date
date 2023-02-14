@@ -5,7 +5,7 @@ import { createReview } from '../../api/reviews'
 import messages from '../shared/AutoDismissAlert/messages'
 
 const NewReviewModal = (props) => {
-    const { court, show, handleClose, msgAlert, triggerRefresh } = props
+    const { court, show, handleClose, msgAlert, triggerRefresh, user } = props
 
     const [review, setReview] = useState({})
 
@@ -31,7 +31,7 @@ const NewReviewModal = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        createReview(court._id, review)
+        createReview(user, court._id, review)
             // first we'll close the modal
             .then(() => handleClose())
             // we'll also send a success message

@@ -122,7 +122,8 @@ const ShowCourt = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 pet={pet}
             /> */}
-             <NewReviewModal 
+             <NewReviewModal
+                user={user}
                 court={court}
                 show={createModalShow}
                 handleClose={() => setCreateModalShow(false)}
