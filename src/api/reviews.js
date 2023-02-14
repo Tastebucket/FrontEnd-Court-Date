@@ -3,10 +3,14 @@ import axios from 'axios'
 
 // CREATE
 // /reviews/:courtId
-export const createReview = (courtId, newReview) => {
+export const createReview = (user, courtId, newReview) => {
+    console.log('user :', user)
     return axios({
         url: `${apiUrl}/reviews/${courtId}`,
         method: 'POST',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
         data: { review: newReview }
     })
 }
