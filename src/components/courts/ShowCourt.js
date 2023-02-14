@@ -2,18 +2,20 @@ import { useState, useEffect } from 'react'
 // useParams from react-router-dom allows us to see our route parameters
 import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Card, Button } from 'react-bootstrap'
-import { getOneCourt, removeCourt, updateCourt } from '../../api/pets'
+import { getOneCourt } from '../../api/courts'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
-import EditPetModal from './EditPetModal'
+import ReviewForm from '../shared/ReviewForm'
+import ShowReview from '../reviews/ShowReview'
+import NewReviewModal from '../reviews/NewReviewModal'
+// import EditPetModal from './EditPetModal'
 
-// we need to get the pet's id from the route parameters
-// then we need to make a request to the api
-// when we retrieve a pet from the api, we'll render the data on the screen
 
-const ShowPet = (props) => {
+
+const ShowCourt = (props) => {
     const [court, setCourt] = useState(null)
-    // const [editModalShow, setEditModalShow] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [createModalShow, setCreateModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
@@ -35,26 +37,26 @@ const ShowPet = (props) => {
             })
     }, [updated])
 
-    // here's where our removePet function will be called
-    const setCourtFree = () => {
-        removeCourt(user, pet.id)
-            // upon success, send the appropriate message and redirect users
-            .then(() => {
-                msgAlert({
-                    heading: 'Success',
-                    message: messages.removeCourtSuccess,
-                    variant: 'success'
-                })
-            })
-            .then(() => {navigate('/')})
-            // upon failure, just send a message, no navigation required
-            .catch(err => {
-                msgAlert({
-                    heading: 'Error',
-                    message: messages.removeCourtFailure,
-                    variant: 'danger'
-                })
-            })
+    let reviewCards
+    if (court) {
+        if (court.review.length > 0) {
+            reviewCards = court.review.map(review => (
+                <ShowReview
+                    key={review.id} 
+                    review={review}
+                    user={user}
+                    court={court}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
+    }
+
+    
+
+    const onClick = (e) => {
+        
     }
 
     if(!court) {
@@ -68,14 +70,24 @@ const ShowPet = (props) => {
                     <Card.Header>{ court.name }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div><small>Location: { court.location }</small></div>
-                            <div><small>Number of Courts: { court.numberOfCourts }</small></div>
                             <div>
                                 <small>
-                                    Lights: { pet.hasLight ? 'yes' : 'no' }
+                                    Location: { court.location }
+                                </small>
+                            </div>
+                            <div>
+                                <small>
+                                    Number of Courts: { court.numberOfCourts }</small>
+                            </div>
+                            <div>
+                                <small>
+                                    Lights: { court.hasLight ? 'yes' : 'no' }
                                 </small>
                             </div>
                         </Card.Text>
+                        <Button className='m-2' onClick={() => setCreateModalShow(true)}>
+                            Leave a Review
+                        </Button>
                     </Card.Body>
                     {/* <Card.Footer>
                         {
@@ -110,8 +122,15 @@ const ShowPet = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 pet={pet}
             /> */}
+             <NewReviewModal 
+                court={court}
+                show={createModalShow}
+                handleClose={() => setCreateModalShow(false)}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+            />
         </>
     )
 }
 
-export default ShowPet
+export default ShowCourt
