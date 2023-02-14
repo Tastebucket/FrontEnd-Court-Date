@@ -13,6 +13,8 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import ShowCourt from './components/courts/ShowCourt'
+import CourtForm from './components/shared/CourtForm'
+import CreateCourt from './components/courts/CreateCourt'
 
 const App = () => {
 
@@ -68,6 +70,13 @@ const App = () => {
 						<RequireAuth user={user}>
 							<ChangePassword msgAlert={msgAlert} user={user} />
 						</RequireAuth>}
+					/>
+					<Route
+						path= '/create-court'
+						element= {
+							<RequireAuth user={user}>
+								<CreateCourt msgAlert={msgAlert} user={user}/>
+							</RequireAuth>}
 					/>
 					<Route 
 							path='courts/:id'
