@@ -35,28 +35,6 @@ const ShowCourt = (props) => {
             })
     }, [updated])
 
-    // here's where our removePet function will be called
-    // const setCourtFree = () => {
-    //     removeCourt(user, court.id)
-    //         // upon success, send the appropriate message and redirect users
-    //         .then(() => {
-    //             msgAlert({
-    //                 heading: 'Success',
-    //                 message: messages.removeCourtSuccess,
-    //                 variant: 'success'
-    //             })
-    //         })
-    //         .then(() => {navigate('/')})
-    //         // upon failure, just send a message, no navigation required
-    //         .catch(err => {
-    //             msgAlert({
-    //                 heading: 'Error',
-    //                 message: messages.removeCourtFailure,
-    //                 variant: 'danger'
-    //             })
-    //         })
-    // }
-
     if(!court) {
         return <LoadingScreen />
     }

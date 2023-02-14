@@ -1,4 +1,4 @@
-// this is where our api calls for the pets resource will live
+// this is where our api calls for the courts resource will live
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
@@ -12,39 +12,28 @@ export const getOneCourt = (id) => {
     return axios(`${apiUrl}/courts/${id}`)
 }
 
-// Create (create a pet)
-export const createPet = (user, newPet) => {
+// Create (create a court)
+export const createCourt = (user, newCourt) => {
     console.log('this is the user', user)
-    console.log('this is the newPet', newPet)
+    console.log('this is the newCourt', newCourt)
     return axios({
-        url: `${apiUrl}/pets`,
+        url: `${apiUrl}/courts`,
         method: 'POST',
         headers: {
             Authorization: `Token token=${user.token}`
         },
-        data: { pet: newPet }
+        data: { court: newCourt }
     })
 }
 
-// Update (update a pet)
-export const updatePet = (user, updatedPet) => {
+// Update (update a court)
+export const updateCourt = (user, updatedCourt) => {
     return axios({
-        url: `${apiUrl}/pets/${updatedPet.id}`,
+        url: `${apiUrl}/courts/${updatedCourt.id}`,
         method: 'PATCH',
         headers: {
             Authorization: `Token token=${user.token}`
         },
-        data: { pet: updatedPet }
-    })
-}
-
-// Delete (delete a pet)
-export const removePet = (user, petId) => {
-    return axios({
-        url: `${apiUrl}/pets/${petId}`,
-        method: 'DELETE',
-        headers: {
-            Authorization: `Token token=${user.token}`
-        }
+        data: { court: updatedCourt }
     })
 }
