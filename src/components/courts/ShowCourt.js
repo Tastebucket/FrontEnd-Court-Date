@@ -84,6 +84,11 @@ const ShowCourt = (props) => {
                                     Lights: { court.hasLight ? 'yes' : 'no' }
                                 </small>
                             </div>
+                            <div>
+                                <small>
+                                    Reviews: { reviewCards }
+                                </small>
+                            </div>
                         </Card.Text>
                         <Button className='m-2' onClick={() => setCreateModalShow(true)}>
                             Leave a Review
