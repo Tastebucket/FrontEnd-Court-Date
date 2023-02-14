@@ -5,15 +5,17 @@ import { Container, Card, Button } from 'react-bootstrap'
 import { getOneCourt } from '../../api/courts'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
+import ReviewForm from '../shared/ReviewForm'
+import ShowReview from '../reviews/ShowReview'
+import NewReviewModal from '../reviews/NewReviewModal'
 // import EditPetModal from './EditPetModal'
 
-// we need to get the pet's id from the route parameters
-// then we need to make a request to the api
-// when we retrieve a pet from the api, we'll render the data on the screen
+
 
 const ShowCourt = (props) => {
     const [court, setCourt] = useState(null)
-    // const [editModalShow, setEditModalShow] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false)
+    const [createModalShow, setCreateModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
@@ -35,6 +37,28 @@ const ShowCourt = (props) => {
             })
     }, [updated])
 
+    let reviewCards
+    if (court) {
+        if (court.review.length > 0) {
+            reviewCards = court.review.map(review => (
+                <ShowReview
+                    key={review.id} 
+                    review={review}
+                    user={user}
+                    court={court}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
+    }
+
+    
+
+    const onClick = (e) => {
+        
+    }
+
     if(!court) {
         return <LoadingScreen />
     }
@@ -46,14 +70,24 @@ const ShowCourt = (props) => {
                     <Card.Header>{ court.name }</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <div><small>Location: { court.location }</small></div>
-                            <div><small>Number of Courts: { court.numberOfCourts }</small></div>
+                            <div>
+                                <small>
+                                    Location: { court.location }
+                                </small>
+                            </div>
+                            <div>
+                                <small>
+                                    Number of Courts: { court.numberOfCourts }</small>
+                            </div>
                             <div>
                                 <small>
                                     Lights: { court.hasLight ? 'yes' : 'no' }
                                 </small>
                             </div>
                         </Card.Text>
+                        <Button className='m-2' onClick={() => setCreateModalShow(true)}>
+                            Leave a Review
+                        </Button>
                     </Card.Body>
                     {/* <Card.Footer>
                         {
@@ -88,6 +122,13 @@ const ShowCourt = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 pet={pet}
             /> */}
+             <NewReviewModal 
+                court={court}
+                show={createModalShow}
+                handleClose={() => setCreateModalShow(false)}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+            />
         </>
     )
 }
