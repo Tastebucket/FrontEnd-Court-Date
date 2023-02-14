@@ -70,7 +70,7 @@ const CourtsIndex = (props) => {
                     Number of Hoops: {court.numberOfHoops}
                 </Card.Text>
                 <Card.Text>
-                    <Link to={`/courts/${court.id}`} className="btn btn-info">View { court.name }</Link>
+                    <Link to={`/courts/${court._id}`} className="btn btn-info">View { court.name }</Link>
                 </Card.Text>
                 { court.owner ?
                 <Card.Footer>

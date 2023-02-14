@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react'
 // useParams from react-router-dom allows us to see our route parameters
 import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Card, Button } from 'react-bootstrap'
-import { getOneCourt, removeCourt, updateCourt } from '../../api/pets'
+import { getOneCourt } from '../../api/courts'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
-import EditPetModal from './EditPetModal'
+// import EditPetModal from './EditPetModal'
 
 // we need to get the pet's id from the route parameters
 // then we need to make a request to the api
 // when we retrieve a pet from the api, we'll render the data on the screen
 
-const ShowPet = (props) => {
+const ShowCourt = (props) => {
     const [court, setCourt] = useState(null)
     // const [editModalShow, setEditModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
@@ -36,26 +36,26 @@ const ShowPet = (props) => {
     }, [updated])
 
     // here's where our removePet function will be called
-    const setCourtFree = () => {
-        removeCourt(user, pet.id)
-            // upon success, send the appropriate message and redirect users
-            .then(() => {
-                msgAlert({
-                    heading: 'Success',
-                    message: messages.removeCourtSuccess,
-                    variant: 'success'
-                })
-            })
-            .then(() => {navigate('/')})
-            // upon failure, just send a message, no navigation required
-            .catch(err => {
-                msgAlert({
-                    heading: 'Error',
-                    message: messages.removeCourtFailure,
-                    variant: 'danger'
-                })
-            })
-    }
+    // const setCourtFree = () => {
+    //     removeCourt(user, court.id)
+    //         // upon success, send the appropriate message and redirect users
+    //         .then(() => {
+    //             msgAlert({
+    //                 heading: 'Success',
+    //                 message: messages.removeCourtSuccess,
+    //                 variant: 'success'
+    //             })
+    //         })
+    //         .then(() => {navigate('/')})
+    //         // upon failure, just send a message, no navigation required
+    //         .catch(err => {
+    //             msgAlert({
+    //                 heading: 'Error',
+    //                 message: messages.removeCourtFailure,
+    //                 variant: 'danger'
+    //             })
+    //         })
+    // }
 
     if(!court) {
         return <LoadingScreen />
@@ -72,7 +72,7 @@ const ShowPet = (props) => {
                             <div><small>Number of Courts: { court.numberOfCourts }</small></div>
                             <div>
                                 <small>
-                                    Lights: { pet.hasLight ? 'yes' : 'no' }
+                                    Lights: { court.hasLight ? 'yes' : 'no' }
                                 </small>
                             </div>
                         </Card.Text>
@@ -114,4 +114,4 @@ const ShowPet = (props) => {
     )
 }
 
-export default ShowPet
+export default ShowCourt
