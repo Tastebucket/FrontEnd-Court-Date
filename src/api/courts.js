@@ -37,3 +37,4 @@ export const updateCourt = (user, updatedCourt) => {
         data: { court: updatedCourt }
     })
 }
+
