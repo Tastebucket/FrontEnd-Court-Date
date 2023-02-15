@@ -77,6 +77,7 @@ const CourtForm = (props) => {
                         type="number" 
                         placeholder="Cost of entry"
                         name="cost"
+                        min="0"
                         id="cost"
                         value={ court.cost }
                         onChange={handleChange}
