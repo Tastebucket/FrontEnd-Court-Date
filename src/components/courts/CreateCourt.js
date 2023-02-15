@@ -35,6 +35,7 @@ const CreateCourt = (props) => {
         e.persist()
         
         setCourt(prevCourt => {
+            
             const updatedName = e.target.name
             let updatedValue = e.target.value
 
