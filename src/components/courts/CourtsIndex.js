@@ -22,8 +22,10 @@ const cardContainerStyle = {
 // CourtsIndex will make a request to the API for all pets
 // once it receives a response, display a card for each pet
 const CourtsIndex = (props) => {
-    let [courts, setCourts] = useState(null)
+    const [courts, setCourts] = useState(null)
     const [error, setError] = useState(false)
+    const [result, setResult] = useState(null)
+    const [display, setDisplay] = useState(null)
     console.log('these are the courts in index', courts)
     // pull the message alert (msgAlert) from props
     const { msgAlert } = props
@@ -40,20 +42,57 @@ const CourtsIndex = (props) => {
                 })
                 setError(true)
             })
+        setDisplay(courts)
     }, [])
-    let result
-    useEffect(() => {
-        console.log(result)
-
-
-    }, [result])
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        console.log(e)
-        result = courts.filter(court => court === e)
+  
+    const onChange = (e) => {
+        e.persist()
+        setResult(() => {
+            // const updatedName = e.target.name
+            let value = e.target.value
+            console.log('this is the value',value)
+            const filter = courts.filter(court => court.name.toLowerCase().includes(value.toLowerCase()))
+            // console.log('this is filter',filter)
+            
+            setCourts(filter)
+        })
+    
     }
 
+    // useEffect(() => {
+    //     setDisplay(courts)
+    // },[courts])
+
+    // console.log('this is display',display)
+
+
+    // const handleDelete = (e) => {
+    //     e.persist()
+    //     console.log('this is e.key',e.key)
+    //     if (e.key === 'Backspace') {
+
+    //         // getAllCourts()
+    //         // .then(res => setCourts(res.data.courts))
+    //         // .catch(err => {
+    //         //     msgAlert({
+    //         //         heading: 'Error getting courts',
+    //         //         message: messages.getCourtsFailure,
+    //         //         variant: 'danger'
+    //         //     })
+    //         //     setError(true)
+    //         // })
+
+    //     setResult(() => {
+    //         // const updatedName = e.target.name
+    //         let value = e.target.value
+    //         // console.log('this is the value',value)
+    //         const filter = courts.filter(court => court.name.toLowerCase().includes(value.toLowerCase()))
+    //         // console.log('this is filter',filter)
+            
+    //         setCourts(filter)
+    //         console.log('this is courts',courts)
+    //     })}
+    // }
 
     // if error, display an error
     if (error) {
@@ -99,8 +138,8 @@ const CourtsIndex = (props) => {
     return (
         <> 
             <SearchBar 
-                courts={courts}
-                onSubmit={handleSubmit}
+                handleChange={onChange}
+                // handleDelete={handleDelete}
             />
             <div className="container-md" style={ cardContainerStyle }>
                 { courtCards }
