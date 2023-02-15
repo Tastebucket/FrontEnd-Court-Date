@@ -8,6 +8,7 @@ import LoadingScreen from '../shared/LoadingScreen'
 import ReviewForm from '../shared/ReviewForm'
 import ShowReview from '../reviews/ShowReview'
 import NewReviewModal from '../reviews/NewReviewModal'
+// import Mapping from './api/map.js'
 // import EditPetModal from './EditPetModal'
 
 
@@ -166,6 +167,7 @@ const ShowCourt = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 pet={pet}
             /> */}
+             {/* <Mapping /> */}
              <NewReviewModal
                 user={user}
                 court={court}
