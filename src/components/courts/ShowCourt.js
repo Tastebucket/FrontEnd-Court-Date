@@ -84,6 +84,11 @@ const ShowCourt = (props) => {
                                     Lights: { court.hasLight ? 'yes' : 'no' }
                                 </small>
                             </div>
+                            <div>
+                                <small>
+                                    Reviews: { reviewCards }
+                                </small>
+                            </div>
                         </Card.Text>
                         <Button className='m-2' onClick={() => setCreateModalShow(true)}>
                             Leave a Review
@@ -122,7 +127,8 @@ const ShowCourt = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 pet={pet}
             /> */}
-             <NewReviewModal 
+             <NewReviewModal
+                user={user}
                 court={court}
                 show={createModalShow}
                 handleClose={() => setCreateModalShow(false)}

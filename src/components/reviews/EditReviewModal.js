@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 import ReviewForm from '../shared/ReviewForm'
-import { createReview } from '../../api/reviews'
+import { updateReview } from '../../api/reviews'
 import messages from '../shared/AutoDismissAlert/messages'
 
-const NewReviewModal = (props) => {
+const EditReviewModal = (props) => {
     const { court, show, handleClose, msgAlert, triggerRefresh, user } = props
 
-    const [review, setReview] = useState({})
+    const [review, setReview] = useState(props.review)
 
     const onChange = (e) => {
         e.persist()
@@ -31,7 +31,7 @@ const NewReviewModal = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-        createReview(user, court._id, review)
+        updateReview(user, court._id, review)
             // first we'll close the modal
             .then(() => handleClose())
             // we'll also send a success message
@@ -61,11 +61,11 @@ const NewReviewModal = (props) => {
                     review={review}
                     handleChange={onChange}
                     handleSubmit={onSubmit}
-                    heading={`Give ${court.name} a review!`}
+                    heading={`Update your review for ${court.name}.`}
                 />
             </Modal.Body>
         </Modal>
     )
 }
 
-export default NewReviewModal
+export default EditReviewModal
