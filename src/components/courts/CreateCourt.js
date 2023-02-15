@@ -26,7 +26,7 @@ const CreateCourt = (props) => {
         surface:'blacktop/asphalt',
         numberOfHoops:'',
         numberOfCourts:'',
-        typeOfRims:''
+        typeOfRims:'single'
         }
     )
 
