@@ -7,7 +7,8 @@ const Home = (props) => {
 	return (
 		<>
 			<CourtsIndex msgAlert= { props.msgAlert }/>
-		</>
+			
+		</> 
 	)
 }
 

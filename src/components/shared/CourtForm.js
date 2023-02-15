@@ -22,6 +22,7 @@ const CourtForm = (props) => {
                         id="name"
                         value={ court.name }
                         onChange={handleChange}
+                        required
                         />
                 </Form.Group>
                 <Form.Group className="m-2">
@@ -32,13 +33,14 @@ const CourtForm = (props) => {
                         id="location"
                         value={ court.location }
                         onChange={handleChange}
+                        required
                         />
                 </Form.Group>
                 {/* <Form.Group className="m-2">
                     <Form.Label>Picture:</Form.Label>
                     <Form.Control 
                     type="number"
-                    placeholder="How old is your court?"
+                    placeholder="Picture"
                     name="age"
                     id="age"
                     value={ court.age }
@@ -75,6 +77,7 @@ const CourtForm = (props) => {
                         type="number" 
                         placeholder="Cost of entry"
                         name="cost"
+                        min="0"
                         id="cost"
                         value={ court.cost }
                         onChange={handleChange}
@@ -83,7 +86,6 @@ const CourtForm = (props) => {
                 <Form.Group className="m-2">
                     <Form.Label>Hours:</Form.Label>
                     <Form.Control
-                        type="number" 
                         placeholder="Hours"
                         name="hours"
                         id="hours"
@@ -94,13 +96,6 @@ const CourtForm = (props) => {
                 </Form.Group>
                 <Form.Group className="m-2">
                     <Form.Label>Surface:</Form.Label>
-                    {/* <Form.Control 
-                        placeholder="Surface type"
-                        name="surface"
-                        id="surface"
-                        value={ court.surface }
-                        onChange={handleChange}
-                    /> */}
                     <Form.Select aria-label="Select a Surface" name="surface"
                         id="surface" onChange={handleChange}>
                         <option value="blacktop/asphalt">Blacktop/Asphalt</option>
@@ -113,10 +108,12 @@ const CourtForm = (props) => {
                     <Form.Control
                         type="number" 
                         placeholder="Number of Hoops"
+                        min="1"
                         name="numberOfHoops"
                         id="numberOfHoops"
                         value={ court.numberOfHoops }
                         onChange={handleChange}
+                        required
                         />
                 </Form.Group>
                 <Form.Group className="m-2">
@@ -124,22 +121,21 @@ const CourtForm = (props) => {
                     <Form.Control
                         type="number"
                         placeholder="Number of Courts"
+                        min="1"
                         name="numberOfCourts"
                         id="numberOfCourts"
                         value={ court.numberOfCourts }
                         onChange={handleChange}
+                        required
                         />
                 </Form.Group>
                 <Form.Group className="m-2">
                     <Form.Label>Type of Rims:</Form.Label>
-                    <Form.Control
-                        type="number"
-                        placeholder="Rim Types"
-                        name="typeOfRims"
-                        id="typeOfRims"
-                        value={ court.typeOfRims }
-                        onChange={handleChange}
-                        />
+                    <Form.Select aria-label="Type of Rims" name="typeOfRims"
+                        id="typeOfRims" onChange={handleChange}>
+                        <option value="single">Single Rim</option>
+                        <option value="double">Double Rim</option>
+                    </Form.Select>
                 </Form.Group>
                 <Button className="m-2" type="submit">Submit</Button>
             </Form>
