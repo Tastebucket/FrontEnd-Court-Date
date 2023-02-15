@@ -18,6 +18,8 @@ const CreateCourt = (props) => {
         name:'',
         location:'',
         // picture:'',
+        latitude: '',
+        longitude: '',
         nets: true,
         isIndoor: false,
         hasLight: false,
@@ -35,8 +37,20 @@ const CreateCourt = (props) => {
     const handleRetrieve = useCallback(
         (res) => {
           console.log('these are res features',res.features)
-          const feature = res.features[0];
+          const feature = res.features[0]
+          console.log('latitude', feature.geometry.coordinates[0])
+          setCourt(prevCourt => {
 
+            const updatedCourt = {
+                longitude : feature.geometry.coordinates[0],
+                latitude : feature.geometry.coordinates[1]
+            }
+            
+
+            return {
+                ...prevCourt, ...updatedCourt
+            }
+        })
         }
       )
 
