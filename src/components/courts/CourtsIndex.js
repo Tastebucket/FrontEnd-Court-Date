@@ -99,25 +99,25 @@ const CourtsIndex = (props) => {
                 <Card.Text>
                     {court.location}
                 </Card.Text>
-                <Card.Text>
+                {/* <Card.Text>
                     Number of Courts: {court.numberOfCourts}
                 </Card.Text>
                 <Card.Text>
                     Number of Hoops: {court.numberOfHoops}
-                </Card.Text>
+                </Card.Text> */}
                 <Card.Text>
                     <Link to={`/courts/${court._id}`} className="btn btn-info">View { court.name }</Link>
                 </Card.Text>
-                { court.owner ?
+                {/* { court.owner ?
                 <Card.Footer>
                      owner: {court.owner.email} 
                 </Card.Footer>
-                : null}
+                : null} */}
             </Card.Body>
         </Card>
     ))
 
-    // return some jsx, a container with all the petcards
+    // return some jsx
     return (
         <> 
             <SearchBar 

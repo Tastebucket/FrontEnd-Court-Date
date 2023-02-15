@@ -5,7 +5,6 @@ const SearchBar = (props) => {
     console.log(props)
     const {handleChange} = props
 
-
     return (
         <>
             <Container>
