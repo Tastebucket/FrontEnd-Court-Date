@@ -8,6 +8,7 @@ import LoadingScreen from '../shared/LoadingScreen'
 import ReviewForm from '../shared/ReviewForm'
 import ShowReview from '../reviews/ShowReview'
 import NewReviewModal from '../reviews/NewReviewModal'
+// import Mapping from './api/map.js'
 // import EditPetModal from './EditPetModal'
 
 
@@ -77,13 +78,52 @@ const ShowCourt = (props) => {
                             </div>
                             <div>
                                 <small>
-                                    Number of Courts: { court.numberOfCourts }</small>
+                                    Number of hoops: { court.numberOfHoops }
+                                </small>
+                            </div>
+                            <div>
+                                <small>
+                                    Number of courts: { court.numberOfCourts }
+                                </small>
+                            </div>
+                            <div>
+                                <small>
+                                    Surface: { court.surface }
+                                </small>
+                            </div>
+                            <div>
+                                <small>
+                                    Type of rims: { court.typeOfRims }
+                                </small>
                             </div>
                             <div>
                                 <small>
                                     Lights: { court.hasLight ? 'yes' : 'no' }
                                 </small>
                             </div>
+                            <div>
+                                <small>
+                                    Does the hoops have nets? { court.nets ? 'yes' : 'no' }
+                                </small>
+                            </div>
+                    
+                            <div>
+                                <small>
+                                    Indoor: { court.isIndoor ? 'yes' : 'no'}
+                                </small>
+                            </div>
+                            <div>
+                                <small>
+                                    Cost: { court.cost }
+                                </small>
+                            </div>
+                            <div>
+                                <small>
+                                    Hours: { court.hours }
+                                </small>
+                            </div>
+                          
+                          
                             <div>
                                 <small>
                                     Reviews: { reviewCards }
@@ -127,6 +167,7 @@ const ShowCourt = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 pet={pet}
             /> */}
+             {/* <Mapping /> */}
              <NewReviewModal
                 user={user}
                 court={court}
