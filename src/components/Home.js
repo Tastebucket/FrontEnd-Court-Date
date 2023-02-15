@@ -9,7 +9,8 @@ const Home = (props) => {
 		<>
 			<Mapping />
 			<CourtsIndex msgAlert= { props.msgAlert }/>
-		</>
+			
+		</> 
 	)
 }
 
