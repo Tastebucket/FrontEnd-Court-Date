@@ -42,7 +42,16 @@ const CourtsIndex = (props) => {
                 })
                 setError(true)
             })
-        setDisplay(courts)
+        getAllCourts()
+        .then(res => setDisplay(res.data.courts))
+        .catch(err => {
+            msgAlert({
+                heading: 'Error getting courts',
+                message: messages.getCourtsFailure,
+                variant: 'danger'
+            })
+            setError(true)
+        })
     }, [])
   
     const onChange = (e) => {
@@ -51,7 +60,7 @@ const CourtsIndex = (props) => {
             // const updatedName = e.target.name
             let value = e.target.value
             console.log('this is the value',value)
-            const filter = courts.filter(court => court.name.toLowerCase().includes(value.toLowerCase()))
+            const filter = display.filter(court => court.name.toLowerCase().includes(value.toLowerCase()))
             // console.log('this is filter',filter)
             
             setCourts(filter)
@@ -59,40 +68,6 @@ const CourtsIndex = (props) => {
     
     }
 
-    // useEffect(() => {
-    //     setDisplay(courts)
-    // },[courts])
-
-    // console.log('this is display',display)
-
-
-    // const handleDelete = (e) => {
-    //     e.persist()
-    //     console.log('this is e.key',e.key)
-    //     if (e.key === 'Backspace') {
-
-    //         // getAllCourts()
-    //         // .then(res => setCourts(res.data.courts))
-    //         // .catch(err => {
-    //         //     msgAlert({
-    //         //         heading: 'Error getting courts',
-    //         //         message: messages.getCourtsFailure,
-    //         //         variant: 'danger'
-    //         //     })
-    //         //     setError(true)
-    //         // })
-
-    //     setResult(() => {
-    //         // const updatedName = e.target.name
-    //         let value = e.target.value
-    //         // console.log('this is the value',value)
-    //         const filter = courts.filter(court => court.name.toLowerCase().includes(value.toLowerCase()))
-    //         // console.log('this is filter',filter)
-            
-    //         setCourts(filter)
-    //         console.log('this is courts',courts)
-    //     })}
-    // }
 
     // if error, display an error
     if (error) {
@@ -104,7 +79,15 @@ const CourtsIndex = (props) => {
         return <LoadingScreen />
     } else if (courts.length === 0) {
         // otherwise if there ARE no courts, display that message
-        return <p>No courts yet, go add some!</p>
+        return (
+        <div>
+            <SearchBar 
+                handleChange={onChange}
+                // handleDelete={handleDelete}
+            />
+            <p>No courts here!</p>
+        </div>
+        )
     }
 
     // once we have an array of courts, loop over them
@@ -116,25 +99,25 @@ const CourtsIndex = (props) => {
                 <Card.Text>
                     {court.location}
                 </Card.Text>
-                <Card.Text>
+                {/* <Card.Text>
                     Number of Courts: {court.numberOfCourts}
                 </Card.Text>
                 <Card.Text>
                     Number of Hoops: {court.numberOfHoops}
-                </Card.Text>
+                </Card.Text> */}
                 <Card.Text>
                     <Link to={`/courts/${court._id}`} className="btn btn-info">View { court.name }</Link>
                 </Card.Text>
-                { court.owner ?
+                {/* { court.owner ?
                 <Card.Footer>
                      owner: {court.owner.email} 
                 </Card.Footer>
-                : null}
+                : null} */}
             </Card.Body>
         </Card>
     ))
 
-    // return some jsx, a container with all the petcards
+    // return some jsx
     return (
         <> 
             <SearchBar 
