@@ -9,14 +9,11 @@ import LoadingScreen from '../shared/LoadingScreen'
 import ShowReview from '../reviews/ShowReview'
 import NewReviewModal from '../reviews/NewReviewModal'
 import EditCourtModal from './UpdateCourt'
-<<<<<<< HEAD
 // import UploadWidget from './cloudinary/UploadWidget'
-=======
 import Mapping from '../../api/map'
 import ShowMap from '../maps/ShowMap'
 
 
->>>>>>> d3948547f2aadee06e0e6147dc4e1913714ee6eb
 
 
 const ShowCourt = (props) => {
