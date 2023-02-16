@@ -2,14 +2,14 @@ import { useState, useEffect } from 'react'
 // useParams from react-router-dom allows us to see our route parameters
 import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Card, Button } from 'react-bootstrap'
-import { getOneCourt } from '../../api/courts'
+import { getOneCourt, updateCourt } from '../../api/courts'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
 import ReviewForm from '../shared/ReviewForm'
 import ShowReview from '../reviews/ShowReview'
 import NewReviewModal from '../reviews/NewReviewModal'
-// import Mapping from './api/map.js'
-// import EditPetModal from './EditPetModal'
+import EditCourtModal from './UpdateCourt'
+
 
 
 
@@ -23,8 +23,7 @@ const ShowCourt = (props) => {
     const navigate = useNavigate()
 
     const { user, msgAlert } = props
-    console.log('user in ShowCourt props', user)
-    console.log('msgAlert in ShowCourt props', msgAlert)
+   
 
     useEffect(() => {
         getOneCourt(id)
@@ -54,11 +53,6 @@ const ShowCourt = (props) => {
         }
     }
 
-    
-
-    const onClick = (e) => {
-        
-    }
 
     if(!court) {
         return <LoadingScreen />
@@ -122,52 +116,45 @@ const ShowCourt = (props) => {
                                     Hours: { court.hours }
                                 </small>
                             </div>
-                          
-                          
                             <div>
                                 <small>
                                     Reviews: { reviewCards }
                                 </small>
                             </div>
                         </Card.Text>
-                        <Button className='m-2' onClick={() => setCreateModalShow(true)}>
-                            Leave a Review
-                        </Button>
+                       
                     </Card.Body>
-                    {/* <Card.Footer>
+                    <Card.Footer>
                         {
-                            court.owner && user && court.owner._id === user._id
-                            ?
+                            user ?
                             <>
-                                <Button 
-                                    className="m-2" variant="warning"
-                                    onClick={() => setEditModalShow(true)}
-                                >
-                                    Edit {pet.name}
-                                </Button>
-                                <Button 
-                                    className="m-2" variant="danger"
-                                    onClick={() => setPetFree()}
-                                >
-                                    Set {pet.name} Free
-                                </Button>
+                            <Button 
+                                className='m-2' 
+                                onClick={() => setCreateModalShow(true)}>
+                                Leave a Review
+                            </Button>
+                            <Button 
+                                className="m-2" variant="warning"
+                                onClick={() => setEditModalShow(true)}>
+                                Edit {court.name}
+                            </Button>
                             </>
-                            :
-                            null
+                            :null
                         }
-                    </Card.Footer> */}
+                    </Card.Footer>
                 </Card>
             </Container>
-            {/* <EditPetModal 
+            <EditCourtModal 
                 user={user}
                 show={editModalShow}
                 handleClose={() => setEditModalShow(false)}
-                updatePet={updatePet}
+                updateCourt={updateCourt}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-                pet={pet}
-            /> */}
-             {/* <Mapping /> */}
+
+                court={court}
+            />
+
              <NewReviewModal
                 user={user}
                 court={court}
