@@ -3,6 +3,7 @@ import { Modal } from 'react-bootstrap'
 import ReviewForm from '../shared/ReviewForm'
 import { createReview } from '../../api/reviews'
 import messages from '../shared/AutoDismissAlert/messages'
+import Rating from '../shared/rating'
 
 const NewReviewModal = (props) => {
     const { court, show, handleClose, msgAlert, triggerRefresh, user } = props
@@ -57,12 +58,15 @@ const NewReviewModal = (props) => {
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton />
             <Modal.Body>
+                Court Rating:
+                <Rating />
                 <ReviewForm 
                     review={review}
                     handleChange={onChange}
                     handleSubmit={onSubmit}
                     heading={`Give ${court.name} a review!`}
                 />
+                
             </Modal.Body>
         </Modal>
     )
