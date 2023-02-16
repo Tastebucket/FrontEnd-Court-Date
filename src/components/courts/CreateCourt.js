@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { createCourt } from '../../api/courts'
 import { createCourtSuccess, createCourtFailure } from '../shared/AutoDismissAlert/messages'
 import CourtForm from '../shared/CourtForm'
@@ -18,6 +18,8 @@ const CreateCourt = (props) => {
         name:'',
         location:'',
         // picture:'',
+        latitude: '',
+        longitude: '',
         nets: true,
         isIndoor: false,
         hasLight: false,
@@ -29,7 +31,28 @@ const CreateCourt = (props) => {
         typeOfRims:'single'
         }
     )
+    
+    const token = process.env.REACT_APP_MAPBOX_TOKEN
 
+    const handleRetrieve = useCallback(
+        (res) => {
+          console.log('these are res features',res.features)
+          const feature = res.features[0]
+          console.log('latitude', feature.geometry.coordinates[0])
+          setCourt(prevCourt => {
+
+            const updatedCourt = {
+                longitude : feature.geometry.coordinates[0],
+                latitude : feature.geometry.coordinates[1]
+            }
+            
+
+            return {
+                ...prevCourt, ...updatedCourt
+            }
+        })
+        }
+      )
 
     const onChange = (e) => {
         e.persist()
@@ -103,6 +126,8 @@ const CreateCourt = (props) => {
     return (
         <CourtForm 
             court={court}
+            token={token}
+            handleRetrieve={handleRetrieve}
             handleChange={onChange}
             handleSubmit={onSubmit}
             heading="Add a new court!"
