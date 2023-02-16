@@ -58,14 +58,14 @@ const EditReviewModal = (props) => {
         <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton />
             <Modal.Body>
+                Court Rating:
+                <Rating />
                 <ReviewForm 
                     review={review}
                     handleChange={onChange}
                     handleSubmit={onSubmit}
                     heading={`Update your review for ${court.name}.`}
                 />
-                    Court Rating:
-                    <Rating />
             </Modal.Body>
         </Modal>
     )
