@@ -9,7 +9,9 @@ const messages = {
 	createCourtSuccess: 'Court created.',
 	createCourtFailure: 'Unable to add a court.',
 	createReviewSuccess: 'Thank you for your review.',
-	createReviewFailure: 'Unable to leave a review.'
+	createReviewFailure: 'Unable to leave a review.',
+	updateCourtSuccess: 'Court updated.',
+	updateCourtFailure: 'Unable to update court.'
 }
 
 module.exports = messages
