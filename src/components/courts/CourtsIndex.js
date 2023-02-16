@@ -78,7 +78,9 @@ const CourtsIndex = (props) => {
 
     if (!courts) {
         // if no courts loaded yet, display 'loading'
-        return <LoadingScreen /> }
+        return <LoadingScreen /> 
+    }
+
 
     // once we have an array of courts, loop over them
     // produce one card for every court
