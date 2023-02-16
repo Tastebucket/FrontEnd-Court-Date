@@ -5,11 +5,11 @@ import { Container, Card, Button } from 'react-bootstrap'
 import { getOneCourt, updateCourt } from '../../api/courts'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
-import ReviewForm from '../shared/ReviewForm'
+// import ReviewForm from '../shared/ReviewForm'
 import ShowReview from '../reviews/ShowReview'
 import NewReviewModal from '../reviews/NewReviewModal'
 import EditCourtModal from './UpdateCourt'
-
+// import UploadWidget from './cloudinary/UploadWidget'
 
 
 const ShowCourt = (props) => {
@@ -19,7 +19,7 @@ const ShowCourt = (props) => {
     const [updated, setUpdated] = useState(false)
 
     const { id } = useParams()
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const { user, msgAlert } = props
    
@@ -142,7 +142,9 @@ const ShowCourt = (props) => {
                         }
                     </Card.Footer>
                 </Card>
+                
             </Container>
+            {/* <UploadWidget /> */}
             <EditCourtModal 
                 user={user}
                 show={editModalShow}

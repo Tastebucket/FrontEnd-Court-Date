@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import SearchBar from '../shared/SearchBar'
+// import uploadPicture from './cloudinary/UploadWidget'
 
 // api function from our api file
 import { getAllCourts } from '../../api/courts'
@@ -77,18 +78,19 @@ const CourtsIndex = (props) => {
     if (!courts) {
         // if no courts loaded yet, display 'loading'
         return <LoadingScreen />
-    } else if (courts.length === 0) {
-        // otherwise if there ARE no courts, display that message
-        return (
-        <div>
-            <SearchBar 
-                handleChange={onChange}
-                // handleDelete={handleDelete}
-            />
-            <p>No courts here!</p>
-        </div>
-        )
-    }
+    } 
+    // else if (courts.length === 0) {
+    //     // otherwise if there ARE no courts, display that message
+    //     return (
+    //     <div>
+    //         <SearchBar 
+    //             handleChange={onChange}
+    //             // handleDelete={handleDelete}
+    //         />
+    //         <p>No courts here!</p>
+    //     </div>
+    //     )
+    // }
 
     // once we have an array of courts, loop over them
     // produce one card for every court
@@ -120,10 +122,8 @@ const CourtsIndex = (props) => {
     // return some jsx
     return (
         <> 
-            <SearchBar 
-                handleChange={onChange}
-                // handleDelete={handleDelete}
-            />
+            <SearchBar handleChange={onChange}/>
+            {/* <uploadPicture /> */}
             <div className="container-md" style={ cardContainerStyle }>
                 { courtCards }
             </div>
