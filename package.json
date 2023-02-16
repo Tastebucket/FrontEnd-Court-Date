@@ -3,13 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "@cloudinary/react": "^1.9.1",
-    "@cloudinary/url-gen": "^1.9.0",
-=======
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@mapbox/search-js-react": "^1.0.0-beta.14",
->>>>>>> d3948547f2aadee06e0e6147dc4e1913714ee6eb
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
