@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { deleteReview } from '../../api/reviews'
 import EditReviewModal from './EditReviewModal'
+import Rating from '../shared/rating'
 
 const ShowReview = (props) => {
     const { review, user, court, msgAlert, triggerRefresh } = props
@@ -48,12 +49,17 @@ const ShowReview = (props) => {
     }
     console.log('review User:', review.owner)
     console.log('user id:', user._id)
+    console.log('this is the star input', Rating.index)
     return (
         <>
             <Card className="m-2" style={setBgCondition(review.condition)}>
                 <Card.Header>{review.name}</Card.Header>
                 <Card.Body>
-                    <small>{review.note}</small>
+                    {review.note}
+                    <br/>
+                    Court Rating:
+                    <Rating />
+                    
                 </Card.Body>
                 <Card.Footer>
                     {
