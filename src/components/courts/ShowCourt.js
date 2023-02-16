@@ -12,6 +12,7 @@ import EditCourtModal from './UpdateCourt'
 
 
 
+
 const ShowCourt = (props) => {
     const [court, setCourt] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
@@ -150,8 +151,10 @@ const ShowCourt = (props) => {
                 updateCourt={updateCourt}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
+
                 court={court}
             />
+
              <NewReviewModal
                 user={user}
                 court={court}

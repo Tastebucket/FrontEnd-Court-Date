@@ -10,6 +10,7 @@ import { getAllCourts } from '../../api/courts'
 // need our messages from our autodismissalert directory
 import messages from '../shared/AutoDismissAlert/messages'
 
+
 // this is a styling object. they're a quick easy way add focused css properties to our react components
 // styling objects use any CSS style, but in camelCase instead of the typical hyphenated naming convention
 // this is because we're in js
