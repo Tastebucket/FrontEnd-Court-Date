@@ -3,13 +3,19 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import SearchBar from '../shared/SearchBar'
+<<<<<<< HEAD
 // import uploadPicture from './cloudinary/UploadWidget'
+=======
+import Rating from '../shared/rating'
+>>>>>>> d3948547f2aadee06e0e6147dc4e1913714ee6eb
 
 // api function from our api file
 import { getAllCourts } from '../../api/courts'
 
 // need our messages from our autodismissalert directory
 import messages from '../shared/AutoDismissAlert/messages'
+import Mapping from '../../api/map'
+
 
 // this is a styling object. they're a quick easy way add focused css properties to our react components
 // styling objects use any CSS style, but in camelCase instead of the typical hyphenated naming convention
@@ -30,7 +36,6 @@ const CourtsIndex = (props) => {
     console.log('these are the courts in index', courts)
     // pull the message alert (msgAlert) from props
     const { msgAlert } = props
-
     // get our courts from the api when the component mounts
     useEffect(() => {
         getAllCourts()
@@ -53,6 +58,7 @@ const CourtsIndex = (props) => {
             })
             setError(true)
         })
+
     }, [])
   
     const onChange = (e) => {
@@ -77,9 +83,17 @@ const CourtsIndex = (props) => {
 
     if (!courts) {
         // if no courts loaded yet, display 'loading'
+<<<<<<< HEAD
         return <LoadingScreen />
     } 
     // else if (courts.length === 0) {
+=======
+
+        return <LoadingScreen /> 
+
+    }
+    // } else if (courts.length === 0) {
+>>>>>>> d3948547f2aadee06e0e6147dc4e1913714ee6eb
     //     // otherwise if there ARE no courts, display that message
     //     return (
     //     <div>
@@ -91,30 +105,30 @@ const CourtsIndex = (props) => {
     //     </div>
     //     )
     // }
+<<<<<<< HEAD
+=======
+
+>>>>>>> d3948547f2aadee06e0e6147dc4e1913714ee6eb
 
     // once we have an array of courts, loop over them
     // produce one card for every court
     const courtCards = courts.map(court => (
-        <Card key={ court.id } style={{ width: '30%', margin: 5 }}>
+        <Card key={ court._id } style={{ width: '30%', margin: 5 }}>
             <Card.Header>{ court.name }</Card.Header>
             <Card.Body>
-                <Card.Text>
+                <Card.Text >
                     {court.location}
                 </Card.Text>
-                {/* <Card.Text>
-                    Number of Courts: {court.numberOfCourts}
-                </Card.Text>
                 <Card.Text>
-                    Number of Hoops: {court.numberOfHoops}
+                    Court Rating:
+                    <Rating />
+                </Card.Text>
+                {/* <Card.Text> (when ratings are setup)
+                    {court.rating}
                 </Card.Text> */}
                 <Card.Text>
                     <Link to={`/courts/${court._id}`} className="btn btn-info">View { court.name }</Link>
                 </Card.Text>
-                {/* { court.owner ?
-                <Card.Footer>
-                     owner: {court.owner.email} 
-                </Card.Footer>
-                : null} */}
             </Card.Body>
         </Card>
     ))
@@ -122,8 +136,16 @@ const CourtsIndex = (props) => {
     // return some jsx
     return (
         <> 
+<<<<<<< HEAD
             <SearchBar handleChange={onChange}/>
             {/* <uploadPicture /> */}
+=======
+            <Mapping courts = {courts} />
+            <SearchBar 
+                handleChange={onChange}
+                // handleDelete={handleDelete}
+            />
+>>>>>>> d3948547f2aadee06e0e6147dc4e1913714ee6eb
             <div className="container-md" style={ cardContainerStyle }>
                 { courtCards }
             </div>

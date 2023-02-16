@@ -2,15 +2,16 @@
 // the action will be dependent upon the parent component
 // but the form will look the same on both Create and Update
 import { Form, Button, Container } from 'react-bootstrap'
+import { AddressAutofill } from '@mapbox/search-js-react'
 
 
 const CourtForm = (props) => {
     // we need several props for a working, reusable form
     // the object itself(court), some handleChange fn, some handleSubmit fn
     // and in this case, we'll add a custom heading
-    const { court, handleChange, handleSubmit, heading } = props
-    
+    const { token, handleRetrieve, court, handleChange, handleSubmit, heading } = props
     return (
+        <div>
         <Container className="justify-content-center">
             <h3>{heading}</h3>
             <Form onSubmit={handleSubmit}>
@@ -27,14 +28,18 @@ const CourtForm = (props) => {
                 </Form.Group>
                 <Form.Group className="m-2">
                     <Form.Label>Location:</Form.Label>
-                    <Form.Control 
-                        placeholder="Where is this court located?"
-                        name="location"
-                        id="location"
-                        value={ court.location }
-                        onChange={handleChange}
-                        required
-                        />
+                    <AddressAutofill accessToken={token} onRetrieve={handleRetrieve}>
+                        <Form.Control 
+                            placeholder="Where is this court located?"
+                            name="location"
+                            id="mapbox-autofill"
+                            autoComplete="street-address"
+                            value={ court.location }
+                            onChange={handleChange}
+                            required
+                            />
+                    </AddressAutofill>
+                    <Button className="m-2" >Use Current Location</Button>
                 </Form.Group>
                 {/* <Form.Group className="m-2">
                     <Form.Label>Picture:</Form.Label>
@@ -139,7 +144,9 @@ const CourtForm = (props) => {
                 </Form.Group>
                 <Button className="m-2" type="submit">Submit</Button>
             </Form>
+            
         </Container>
+        </div>
     )
 }
 
