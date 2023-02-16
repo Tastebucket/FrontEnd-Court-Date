@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import SearchBar from '../shared/SearchBar'
+import Rating from '../shared/rating'
 
 // api function from our api file
 import { getAllCourts } from '../../api/courts'
@@ -78,7 +79,9 @@ const CourtsIndex = (props) => {
 
     if (!courts) {
         // if no courts loaded yet, display 'loading'
-        return <LoadingScreen />
+
+        return <LoadingScreen /> 
+
     }
     // } else if (courts.length === 0) {
     //     // otherwise if there ARE no courts, display that message
@@ -93,29 +96,26 @@ const CourtsIndex = (props) => {
     //     )
     // }
 
+
     // once we have an array of courts, loop over them
     // produce one card for every court
     const courtCards = courts.map(court => (
         <Card key={ court._id } style={{ width: '30%', margin: 5 }}>
             <Card.Header>{ court.name }</Card.Header>
             <Card.Body>
-                <Card.Text>
+                <Card.Text >
                     {court.location}
                 </Card.Text>
-                {/* <Card.Text>
-                    Number of Courts: {court.numberOfCourts}
-                </Card.Text>
                 <Card.Text>
-                    Number of Hoops: {court.numberOfHoops}
+                    Court Rating:
+                    <Rating />
+                </Card.Text>
+                {/* <Card.Text> (when ratings are setup)
+                    {court.rating}
                 </Card.Text> */}
                 <Card.Text>
                     <Link to={`/courts/${court._id}`} className="btn btn-info">View { court.name }</Link>
                 </Card.Text>
-                {/* { court.owner ?
-                <Card.Footer>
-                     owner: {court.owner.email} 
-                </Card.Footer>
-                : null} */}
             </Card.Body>
         </Card>
     ))
