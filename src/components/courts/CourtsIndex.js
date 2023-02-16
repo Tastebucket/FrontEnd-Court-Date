@@ -96,7 +96,7 @@ const CourtsIndex = (props) => {
     // once we have an array of courts, loop over them
     // produce one card for every court
     const courtCards = courts.map(court => (
-        <Card key={ court.id } style={{ width: '30%', margin: 5 }}>
+        <Card key={ court._id } style={{ width: '30%', margin: 5 }}>
             <Card.Header>{ court.name }</Card.Header>
             <Card.Body>
                 <Card.Text>
