@@ -10,8 +10,8 @@ const CourtForm = (props) => {
     // the object itself(court), some handleChange fn, some handleSubmit fn
     // and in this case, we'll add a custom heading
     const { token, handleRetrieve, court, handleChange, handleSubmit, heading } = props
-    
     return (
+        <div>
         <Container className="justify-content-center">
             <h3>{heading}</h3>
             <Form onSubmit={handleSubmit}>
@@ -39,6 +39,7 @@ const CourtForm = (props) => {
                             required
                             />
                     </AddressAutofill>
+                    <Button className="m-2" >Use Current Location</Button>
                 </Form.Group>
                 {/* <Form.Group className="m-2">
                     <Form.Label>Picture:</Form.Label>
@@ -143,7 +144,9 @@ const CourtForm = (props) => {
                 </Form.Group>
                 <Button className="m-2" type="submit">Submit</Button>
             </Form>
+            
         </Container>
+        </div>
     )
 }
 

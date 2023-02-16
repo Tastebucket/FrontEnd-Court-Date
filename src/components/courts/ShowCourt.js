@@ -9,6 +9,8 @@ import ReviewForm from '../shared/ReviewForm'
 import ShowReview from '../reviews/ShowReview'
 import NewReviewModal from '../reviews/NewReviewModal'
 import EditCourtModal from './UpdateCourt'
+import Mapping from '../../api/map'
+import ShowMap from '../maps/ShowMap'
 
 
 
@@ -60,6 +62,7 @@ const ShowCourt = (props) => {
 
     return (
         <>
+            <ShowMap court={court} />
             <Container className="m-2">
                 <Card>
                     <Card.Header>{ court.name }</Card.Header>

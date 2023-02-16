@@ -7,7 +7,7 @@ const Home = (props) => {
 
 	return (
 		<>
-			<Mapping />
+		
 			<CourtsIndex msgAlert= { props.msgAlert }/>
 			
 		</> 

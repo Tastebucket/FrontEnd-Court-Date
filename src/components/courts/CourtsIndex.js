@@ -10,6 +10,7 @@ import { getAllCourts } from '../../api/courts'
 
 // need our messages from our autodismissalert directory
 import messages from '../shared/AutoDismissAlert/messages'
+import Mapping from '../../api/map'
 
 
 // this is a styling object. they're a quick easy way add focused css properties to our react components
@@ -31,7 +32,6 @@ const CourtsIndex = (props) => {
     console.log('these are the courts in index', courts)
     // pull the message alert (msgAlert) from props
     const { msgAlert } = props
-
     // get our courts from the api when the component mounts
     useEffect(() => {
         getAllCourts()
@@ -54,6 +54,7 @@ const CourtsIndex = (props) => {
             })
             setError(true)
         })
+
     }, [])
   
     const onChange = (e) => {
@@ -78,14 +79,28 @@ const CourtsIndex = (props) => {
 
     if (!courts) {
         // if no courts loaded yet, display 'loading'
+
         return <LoadingScreen /> 
+
     }
+    // } else if (courts.length === 0) {
+    //     // otherwise if there ARE no courts, display that message
+    //     return (
+    //     <div>
+    //         <SearchBar 
+    //             handleChange={onChange}
+    //             // handleDelete={handleDelete}
+    //         />
+    //         <p>No courts here!</p>
+    //     </div>
+    //     )
+    // }
 
 
     // once we have an array of courts, loop over them
     // produce one card for every court
     const courtCards = courts.map(court => (
-        <Card key={ court.id } style={{ width: '30%', margin: 5 }}>
+        <Card key={ court._id } style={{ width: '30%', margin: 5 }}>
             <Card.Header>{ court.name }</Card.Header>
             <Card.Body>
                 <Card.Text >
@@ -108,6 +123,7 @@ const CourtsIndex = (props) => {
     // return some jsx
     return (
         <> 
+            <Mapping courts = {courts} />
             <SearchBar 
                 handleChange={onChange}
                 // handleDelete={handleDelete}
