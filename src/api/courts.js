@@ -14,8 +14,6 @@ export const getOneCourt = (id) => {
 
 // Create (create a court)
 export const createCourt = (user, newCourt) => {
-    console.log('this is the user', user)
-    console.log('this is the newCourt', newCourt)
     return axios({
         url: `${apiUrl}/courts`,
         method: 'POST',
@@ -29,7 +27,7 @@ export const createCourt = (user, newCourt) => {
 // Update (update a court)
 export const updateCourt = (user, updatedCourt) => {
     return axios({
-        url: `${apiUrl}/courts/${updatedCourt.id}`,
+        url: `${apiUrl}/courts/${updatedCourt._id}`,
         method: 'PATCH',
         headers: {
             Authorization: `Token token=${user.token}`

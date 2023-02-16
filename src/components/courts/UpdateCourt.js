@@ -1,57 +1,14 @@
-import { useState, useCallback } from 'react'
-import { createCourt } from '../../api/courts'
-import { createCourtSuccess, createCourtFailure } from '../shared/AutoDismissAlert/messages'
+import React, { useState } from 'react'
+import { Modal } from 'react-bootstrap'
 import CourtForm from '../shared/CourtForm'
+import messages from '../shared/AutoDismissAlert/messages'
 
-// bring in the useNavigate hook from react-router-dom
-import { useNavigate } from 'react-router-dom'
+const EditCourtModal = (props) => {
+    // destructure our props
+    console.log(props)
+    const { user, show, handleClose, updateCourt, msgAlert, triggerRefresh } = props
 
-const CreateCourt = (props) => {
-    // pull out our props
-    const { user, msgAlert } = props
-    // set up(pull our navigate function from useNavigate)
-    const navigate = useNavigate()
-    console.log('this is navigate', navigate)
-
-    const [court, setCourt] = useState({
-        name:'',
-        location:'',
-        // picture:'',
-        latitude: '',
-        longitude: '',
-        nets: true,
-        isIndoor: false,
-        hasLight: false,
-        cost:'',
-        hours:'',
-        surface:'blacktop/asphalt',
-        numberOfHoops:'',
-        numberOfCourts:'',
-        typeOfRims:'single'
-        }
-    )
-    
-    const token = process.env.REACT_APP_MAPBOX_TOKEN
-
-    const handleRetrieve = useCallback(
-        (res) => {
-          console.log('these are res features',res.features)
-          const feature = res.features[0]
-          console.log('latitude', feature.geometry.coordinates[0])
-          setCourt(prevCourt => {
-
-            const updatedCourt = {
-                longitude : feature.geometry.coordinates[0],
-                latitude : feature.geometry.coordinates[1]
-            }
-            
-
-            return {
-                ...prevCourt, ...updatedCourt
-            }
-        })
-        }
-      )
+    const [court, setCourt] = useState(props.court)
 
     const onChange = (e) => {
         e.persist()
@@ -100,22 +57,23 @@ const CreateCourt = (props) => {
     const onSubmit = (e) => {
         e.preventDefault()
 
-        createCourt(user, court)
+        updateCourt(user, court)
             // first we'll nav to the show page
-            .then(res => { navigate(`/courts/${res.data.court._id}`)})
+            .then(() => handleClose())
             // we'll also send a success message
             .then(() => {
                 msgAlert({
                     heading: 'Oh Yeah!',
-                    message: createCourtSuccess,
+                    message: messages.updateCourtSuccess,
                     variant: 'success'
                 })
             })
+            .then(() => triggerRefresh())
             // if there is an error, tell the user about it
             .catch(() => {
                 msgAlert({
                     heading: 'Oh No!',
-                    message: createCourtFailure,
+                    message: messages.updateCourtFailure,
                     variant: 'danger'
                 })
             })
@@ -123,15 +81,18 @@ const CreateCourt = (props) => {
     }
 
     return (
-        <CourtForm 
-            court={court}
-            token={token}
-            handleRetrieve={handleRetrieve}
-            handleChange={onChange}
-            handleSubmit={onSubmit}
-            heading="Add a new court!"
-        />
+        <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton />
+            <Modal.Body>
+                <CourtForm 
+                    court={court} 
+                    handleChange={onChange} 
+                    handleSubmit={onSubmit} 
+                    heading="Update Court"
+                />
+            </Modal.Body>
+        </Modal>
     )
 }
 
-export default CreateCourt
+export default EditCourtModal
