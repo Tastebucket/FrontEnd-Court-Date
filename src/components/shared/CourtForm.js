@@ -3,13 +3,15 @@
 // but the form will look the same on both Create and Update
 import { Form, Button, Container } from 'react-bootstrap'
 import { AddressAutofill } from '@mapbox/search-js-react'
-
+import { findLocationName } from '../../api/maps'
 
 const CourtForm = (props) => {
     // we need several props for a working, reusable form
     // the object itself(court), some handleChange fn, some handleSubmit fn
     // and in this case, we'll add a custom heading
-    const { token, handleRetrieve, court, handleChange, handleSubmit, heading } = props
+    const { getUserCoordinates, token, handleRetrieve, court, handleChange, handleSubmit, heading } = props
+    
+    
     return (
         <div>
         <Container className="justify-content-center">
@@ -39,7 +41,7 @@ const CourtForm = (props) => {
                             required
                             />
                     </AddressAutofill>
-                    <Button className="m-2" >Use Current Location</Button>
+                    <Button className="m-2" onClick={getUserCoordinates} >Use Current Location</Button>
                 </Form.Group>
                 {/* <Form.Group className="m-2">
                     <Form.Label>Picture:</Form.Label>

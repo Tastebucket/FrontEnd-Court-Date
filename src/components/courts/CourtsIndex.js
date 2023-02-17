@@ -45,8 +45,8 @@ const CourtsIndex = (props) => {
                 setError(true)
             })
         getAllCourts()
-        .then(res => setDisplay(res.data.courts))
-        .catch(err => {
+            .then(res => setDisplay(res.data.courts))
+            .catch(err => {
             msgAlert({
                 heading: 'Error getting courts',
                 message: messages.getCourtsFailure,

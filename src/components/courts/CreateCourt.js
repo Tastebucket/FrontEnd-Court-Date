@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 import { createCourt } from '../../api/courts'
 import { createCourtSuccess, createCourtFailure } from '../shared/AutoDismissAlert/messages'
 import CourtForm from '../shared/CourtForm'
+import { findLocationName } from '../../api/maps'
 
 // bring in the useNavigate hook from react-router-dom
 import { useNavigate } from 'react-router-dom'
@@ -52,6 +53,38 @@ const CreateCourt = (props) => {
         })
         }
       )
+    
+    const geolocationAPI = navigator.geolocation
+    
+    const getUserCoordinates = () => {
+        if (!geolocationAPI) {
+            console.log('Geolocation API is not available in your browser!')
+        } else {
+            geolocationAPI.getCurrentPosition((position) => {
+                const { coords } = position;
+                console.log('this is lat', coords.latitude);
+                console.log('this is long', coords.longitude);
+                findLocationName(coords.longitude,coords.latitude)
+                    .then(res => {
+                        console.log('this is the geo response', res.data.features[0].place_name)
+                        setCourt(prevCourt => {
+
+                            const updatedCourt = {
+                                location : res.data.features[0].place_name,
+                                
+                            }
+                            
+                
+                            return {
+                                ...prevCourt, ...updatedCourt
+                            }
+                    })
+                })
+            }, (error) => {
+                console.log('Something went wrong getting your position!')
+            })
+        }
+    }
 
     const onChange = (e) => {
         e.persist()
@@ -129,6 +162,7 @@ const CreateCourt = (props) => {
             handleRetrieve={handleRetrieve}
             handleChange={onChange}
             handleSubmit={onSubmit}
+            getUserCoordinates={getUserCoordinates}
             heading="Add a new court!"
         />
     )
