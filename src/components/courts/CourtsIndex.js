@@ -11,6 +11,7 @@ import { getAllCourts } from '../../api/courts'
 // need our messages from our autodismissalert directory
 import messages from '../shared/AutoDismissAlert/messages'
 import Mapping from '../../api/map'
+import UploadWidget from '../shared/UploadWidget'
 
 
 // this is a styling object. they're a quick easy way add focused css properties to our react components
@@ -123,6 +124,9 @@ const CourtsIndex = (props) => {
     // return some jsx
     return (
         <> 
+            <div className='container'>
+                <UploadWidget />
+            </div>
             <Mapping courts = {courts} />
             <SearchBar 
                 handleChange={onChange}

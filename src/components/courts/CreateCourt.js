@@ -133,7 +133,7 @@ const CreateCourt = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-
+        if (court.latitude && court.longitude) {
         createCourt(user, court)
             // first we'll nav to the show page
             .then(res => { navigate(`/courts/${res.data.court._id}`)})
@@ -153,7 +153,13 @@ const CreateCourt = (props) => {
                     variant: 'danger'
                 })
             })
-
+        } else {
+            msgAlert({
+                heading: 'Oh No!',
+                message: "Please choose a valid address",
+                variant: 'danger'
+            })
+        }   
     }
 
     return (
