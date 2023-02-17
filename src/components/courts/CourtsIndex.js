@@ -12,6 +12,7 @@ import { getAllCourts } from '../../api/courts'
 // need our messages from our autodismissalert directory
 import messages from '../shared/AutoDismissAlert/messages'
 import Mapping from '../../api/map'
+import UploadWidget from '../shared/UploadWidget'
 
 
 // this is a styling object. they're a quick easy way add focused css properties to our react components
@@ -46,8 +47,8 @@ const CourtsIndex = (props) => {
                 setError(true)
             })
         getAllCourts()
-        .then(res => setDisplay(res.data.courts))
-        .catch(err => {
+            .then(res => setDisplay(res.data.courts))
+            .catch(err => {
             msgAlert({
                 heading: 'Error getting courts',
                 message: messages.getCourtsFailure,
@@ -123,8 +124,14 @@ const CourtsIndex = (props) => {
     // return some jsx
     return (
         <> 
-            <SearchBar handleChange={onChange}/>
-            {/* <uploadPicture /> */}
+            <div className='container'>
+                <UploadWidget />
+            </div>
+            <Mapping courts = {courts} />
+            <SearchBar 
+                handleChange={onChange}
+                // handleDelete={handleDelete}
+            />
             <div className="container-md" style={ cardContainerStyle }>
                 { courtCards }
             </div>
