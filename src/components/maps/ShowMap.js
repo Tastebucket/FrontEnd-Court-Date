@@ -13,26 +13,14 @@ const { court } = props
 console.log('these are the courts', court)
 const [lng, setLng] = useState(court.longitude)
 const [lat, setLat] = useState(court.latitude)
-const geolocationAPI = navigator.geolocation
 
-const getUserCoordinates = () => {
-    if (!geolocationAPI) {
-      console.log('Geolocation API is not available in your browser!')
-    } else {
-        geolocationAPI.getCurrentPosition((position) => {
-            const { coords } = position;
-            console.log('this is lat', coords.latitude);
-            console.log('this is long', coords.longitude);
-          }, (error) => {
-            console.log('Something went wrong getting your position!')
-          })
-        }
-}
+
 // const geocoder = geocoding({ accessToken: 'pk.eyJ1Ijoiam9zaHVhaGFycmlzMTEwMyIsImEiOiJjbGU1cTQ5OGUwOWJrM3V0YzlhYml3Znk1In0.RWn3-nWxtA6_obodRSjaXg' })
 if (!court) {
     // if no courts loaded yet, display 'loading'
     return <LoadingScreen />
 }
+
 
 return (
 
