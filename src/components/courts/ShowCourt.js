@@ -152,15 +152,11 @@ const ShowCourt = (props) => {
                         }
                     </Card.Footer>
                 </Card>
-<<<<<<< HEAD
                 </Col>
                 <Col>
                     <ShowMap court={court} />
                 </Col>
                 </Row>
-=======
-                
->>>>>>> 1892026bfbcba359862aed9185eec574c156deb2
             </Container>
           
             <EditCourtModal 
