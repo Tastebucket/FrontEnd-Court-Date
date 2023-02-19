@@ -1,4 +1,4 @@
-import { Container, Form, Button } from "react-bootstrap"
+import { Container, Form } from "react-bootstrap"
 
 
 const SearchBar = (props) => {

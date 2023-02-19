@@ -3,9 +3,9 @@ import { Modal } from 'react-bootstrap'
 import CourtForm from '../shared/CourtForm'
 import messages from '../shared/AutoDismissAlert/messages'
 
+
 const EditCourtModal = (props) => {
     // destructure our props
-    console.log(props)
     const { user, show, handleClose, updateCourt, msgAlert, triggerRefresh } = props
 
     const [court, setCourt] = useState(props.court)

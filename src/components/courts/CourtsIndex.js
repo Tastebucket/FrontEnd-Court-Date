@@ -80,10 +80,10 @@ const CourtsIndex = (props) => {
 
     if (!courts) {
         // if no courts loaded yet, display 'loading'
+        return <LoadingScreen />
+    } 
+    // else if (courts.length === 0) {
 
-        return <LoadingScreen /> 
-
-    }
     // } else if (courts.length === 0) {
     //     // otherwise if there ARE no courts, display that message
     //     return (
@@ -96,7 +96,6 @@ const CourtsIndex = (props) => {
     //     </div>
     //     )
     // }
-
 
     // once we have an array of courts, loop over them
     // produce one card for every court
