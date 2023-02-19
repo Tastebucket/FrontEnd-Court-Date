@@ -2,7 +2,7 @@ import { Form, Button, Container } from 'react-bootstrap'
 import FloatingLabel from 'react-bootstrap/FloatingLabel'
 
 const ReviewForm = (props) => {
-    const { review, handleChange, handleSubmit, heading } = props
+    const { review, handleChange, handleSubmit } = props
 
     return (
         <Container className="justify-content-center">

@@ -10,7 +10,6 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
 
 export const ShowMap = (props) => {
 const { court } = props
-console.log('these are the courts', court)
 const [lng, setLng] = useState(court.longitude)
 const [lat, setLat] = useState(court.latitude)
 

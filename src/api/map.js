@@ -12,6 +12,7 @@ export const Mapping = (props) => {
 const { courts, longit, latit } = props
 // console.log('these are the courts', courts)
 
+
 const handleRetrieve = useCallback(
     (res) => {
     //   console.log('these are res features',res)
