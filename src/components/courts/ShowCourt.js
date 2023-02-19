@@ -9,10 +9,9 @@ import LoadingScreen from '../shared/LoadingScreen'
 import ShowReview from '../reviews/ShowReview'
 import NewReviewModal from '../reviews/NewReviewModal'
 import EditCourtModal from './UpdateCourt'
-// import UploadWidget from './cloudinary/UploadWidget'
 import Mapping from '../../api/map'
 import ShowMap from '../maps/ShowMap'
-
+import UploadWidget from '../shared/UploadWidget'
 
 
 
@@ -142,6 +141,9 @@ const ShowCourt = (props) => {
                                 onClick={() => setEditModalShow(true)}>
                                 Edit {court.name}
                             </Button>
+                            <div className='container'>
+                                <UploadWidget user={user} msgAlert={msgAlert} court={court} />
+                            </div>
                             </>
                             :null
                         }
@@ -149,7 +151,7 @@ const ShowCourt = (props) => {
                 </Card>
                 
             </Container>
-            {/* <UploadWidget /> */}
+          
             <EditCourtModal 
                 user={user}
                 show={editModalShow}

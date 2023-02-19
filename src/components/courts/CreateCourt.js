@@ -66,7 +66,7 @@ const CreateCourt = (props) => {
                 console.log('this is long', coords.longitude);
                 findLocationName(coords.longitude,coords.latitude)
                     .then(res => {
-                        console.log('this is the geo response', res.data.features[0].geometry.coordinates[0])
+                        console.log('this is the geo response', res.data)
                         setCourt(prevCourt => {
 
                             const updatedCourt = {
