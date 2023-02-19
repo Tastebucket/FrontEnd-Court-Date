@@ -5,6 +5,7 @@ import { v4 as uuid } from 'uuid'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import Map, {Marker} from "react-map-gl"
 
+
 // import AuthenticatedRoute from './components/shared/AuthenticatedRoute'
 import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/shared/Header'

@@ -59,14 +59,18 @@ const ShowCourt = (props) => {
     if(!court) {
         return <LoadingScreen />
     }
-
+    console.log('this is court picture', court.picture[0])
     return (
         <>
             <ShowMap court={court} />
             <Container className="m-2">
                 <Card>
-                    <Card.Header>{ court.name }</Card.Header>
+                <Card.Header style={{ backgroundColor: '#FC9047'}}><h5>{ court.name }</h5></Card.Header>
+
                     <Card.Body>
+                        <Card.Img src={court.picture[0]} />
+                            
+                     
                         <Card.Text>
                             <div>
                                 <small>

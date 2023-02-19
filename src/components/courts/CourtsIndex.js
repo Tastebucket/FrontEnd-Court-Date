@@ -101,8 +101,8 @@ const CourtsIndex = (props) => {
     // produce one card for every court
     const courtCards = courts.map(court => (
         <Card key={ court._id } style={{ width: '30%', margin: 5 }}>
-            <Card.Header>{ court.name }</Card.Header>
-            <Card.Body>
+            <Card.Header style={{ backgroundColor: '#FC9047'}} className='orange'><h5>{ court.name }</h5></Card.Header>
+            <Card.Body >
                 <Card.Text >
                     {court.location}
                 </Card.Text>
@@ -114,7 +114,7 @@ const CourtsIndex = (props) => {
                     {court.rating}
                 </Card.Text> */}
                 <Card.Text>
-                    <Link to={`/courts/${court._id}`} className="btn btn-info">View { court.name }</Link>
+                    <Link to={`/courts/${court._id}`} className="orange-link">View { court.name }</Link>
                 </Card.Text>
             </Card.Body>
         </Card>
@@ -123,9 +123,6 @@ const CourtsIndex = (props) => {
     // return some jsx
     return (
         <> 
-            <div className='container'>
-                <UploadWidget />
-            </div>
             <Mapping courts = {courts} />
             <SearchBar 
                 handleChange={onChange}
