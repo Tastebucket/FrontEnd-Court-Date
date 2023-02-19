@@ -1,5 +1,6 @@
 import CourtsIndex from "./courts/CourtsIndex"
 import Mapping from '../api/map.js'
+import '../index.css'
 
 const Home = (props) => {
 	const { msgAlert, user } = props
@@ -7,8 +8,8 @@ const Home = (props) => {
 
 	return (
 		<>
-		
-			<CourtsIndex msgAlert= { props.msgAlert }/>
+			
+			<CourtsIndex className='background' msgAlert= { props.msgAlert }/>
 			
 		</> 
 	)

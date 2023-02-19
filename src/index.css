@@ -10,6 +10,7 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+    color: #FFF7F6;
 }
 
 button {
@@ -24,4 +25,46 @@ button {
 }
 .off {
   color: #ccc;
+}
+
+html{
+  background-color: #4D3531;
+}
+
+#root {
+  background-color: #4D3531;
+  color: #FFF7F6;
+}
+
+.brown {
+  background-color: #AC5043;
+}
+
+.orange-link {
+  background-color: #DCB5AE;
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+  font-weight: 500;
+}
+
+.orange {
+  font-weight: 700;
+  color: black;
+}
+
+.white {
+  color: #FFF7F6;
+}
+
+.black {
+  color: black;
+}
+
+h5{
+  color: black;
+}
+
+p{
+  color: black;
 }
