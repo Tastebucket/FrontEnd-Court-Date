@@ -9,14 +9,12 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
 // import * as CourtsIndex from "src/components/courts/CourtsIndex.js"
 
 export const Mapping = (props) => {
-const { courts } = props
-console.log('these are the courts', courts)
-const [lng, setLng] = useState(-73.769417)
-const [lat, setLat] = useState(40.742054)
+const { courts, longit, latit } = props
+// console.log('these are the courts', courts)
 
 const handleRetrieve = useCallback(
     (res) => {
-      console.log('these are res features',res)
+    //   console.log('these are res features',res)
     }
 )
 // const geocoder = geocoding({ accessToken: 'pk.eyJ1Ijoiam9zaHVhaGFycmlzMTEwMyIsImEiOiJjbGU1cTQ5OGUwOWJrM3V0YzlhYml3Znk1In0.RWn3-nWxtA6_obodRSjaXg' })
@@ -24,8 +22,11 @@ if (!courts) {
     // if no courts loaded yet, display 'loading'
     return <LoadingScreen />
 }
+if (!longit || !latit) {
+    return <LoadingScreen />
+}
     const mapMarkers = courts.map(court => {
-        console.log('this is one court longitude', court.longitude)
+        // console.log('this is one court longitude', court.longitude)
         const long = court.longitude.toString()
         const lat = court.latitude.toString()
         return(
@@ -38,8 +39,8 @@ return (
 <>
     <Map
     mapboxAccessToken= {process.env.REACT_APP_MAPBOX_TOKEN}
-    style={{ marginLeft: "5%", justifyContent: "center", width: "90%", height: "250px", borderRadius: "10px", border: "2px solid blue"}}
-    initialViewState={{ longitude: lng, latitude: lat, zoom: 5 }}
+    style={{ marginLeft: "5%", justifyContent: "center", width: "80%", height: "350px", borderRadius: "10px", border: "2px solid blue"}}
+    initialViewState={{ longitude: longit, latitude: latit, zoom: 12 }}
     mapStyle="mapbox://styles/mapbox/streets-v9"
     >
     {mapMarkers}

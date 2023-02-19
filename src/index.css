@@ -1,4 +1,5 @@
 body {
+  background-color: #FC9047;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -24,4 +25,14 @@ button {
 }
 .off {
   color: #ccc;
+}
+.card-header{
+  background-color: #FC9047;
+}
+
+.header {
+  background-color: #AC5043;
+}
+#root {
+  background-color:#4D3531;
 }

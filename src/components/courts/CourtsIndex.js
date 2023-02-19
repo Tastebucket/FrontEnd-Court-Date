@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import SearchBar from '../shared/SearchBar'
 import Rating from '../shared/rating'
+import { dist } from '../shared/Distance'
 
 // api function from our api file
 import { getAllCourts } from '../../api/courts'
@@ -12,6 +13,7 @@ import { getAllCourts } from '../../api/courts'
 import messages from '../shared/AutoDismissAlert/messages'
 import Mapping from '../../api/map'
 import UploadWidget from '../shared/UploadWidget'
+import { Container } from 'react-bootstrap'
 
 
 // this is a styling object. they're a quick easy way add focused css properties to our react components
@@ -30,9 +32,14 @@ const CourtsIndex = (props) => {
     const [error, setError] = useState(false)
     const [result, setResult] = useState(null)
     const [display, setDisplay] = useState(null)
-    console.log('these are the courts in index', courts)
+    const [lng, setLng] = useState(null)
+    const [lat, setLat] = useState(null)
+
+    // console.log('these are the courts in index', courts)
     // pull the message alert (msgAlert) from props
     const { msgAlert } = props
+    const geolocationAPI = navigator.geolocation
+
     // get our courts from the api when the component mounts
     useEffect(() => {
         getAllCourts()
@@ -55,7 +62,13 @@ const CourtsIndex = (props) => {
             })
             setError(true)
         })
-
+        geolocationAPI.getCurrentPosition((position) => {
+            const { coords } = position;
+            console.log('this is lat', coords.latitude);
+            console.log('this is long', coords.longitude);
+            setLat(coords.latitude)
+            setLng(coords.longitude)
+        })
     }, [])
   
     const onChange = (e) => {
@@ -63,7 +76,7 @@ const CourtsIndex = (props) => {
         setResult(() => {
             // const updatedName = e.target.name
             let value = e.target.value
-            console.log('this is the value',value)
+            // console.log('this is the value',value)
             const filter = display.filter(court => court.name.toLowerCase().includes(value.toLowerCase()))
             // console.log('this is filter',filter)
             
@@ -100,7 +113,12 @@ const CourtsIndex = (props) => {
 
     // once we have an array of courts, loop over them
     // produce one card for every court
-    const courtCards = courts.map(court => (
+    const courtCards = courts.map(court => {
+        const distance = dist(lat, court.latitude, lng, court.longitude)
+        console.log(`${distance} miles away`)
+        console.log('this is court.latitude', court.latitude)
+        console.log('this is the lat from state', lat)
+        return (
         <Card key={ court._id } style={{ width: '30%', margin: 5 }}>
             <Card.Header>{ court.name }</Card.Header>
             <Card.Body>
@@ -111,6 +129,9 @@ const CourtsIndex = (props) => {
                     Court Rating:
                     <Rating />
                 </Card.Text>
+                <Card.Text>
+                    { distance.toFixed(2) } Miles Away
+                </Card.Text>
                 {/* <Card.Text> (when ratings are setup)
                     {court.rating}
                 </Card.Text> */}
@@ -119,21 +140,23 @@ const CourtsIndex = (props) => {
                 </Card.Text>
             </Card.Body>
         </Card>
-    ))
+        )
+    })
 
     // return some jsx
     return (
         <> 
-            <div className='container'>
-                <UploadWidget />
-            </div>
-            <Mapping courts = {courts} />
-            <SearchBar 
-                handleChange={onChange}
-                // handleDelete={handleDelete}
-            />
-            <div className="container-md" style={ cardContainerStyle }>
-                { courtCards }
+            <div className='container-lg p-4'>
+                <Container fluid="sm">
+                <Mapping courts = {courts} latit={lat} longit={lng} />
+                </Container>
+                <SearchBar 
+                    handleChange={onChange}
+                    // handleDelete={handleDelete}
+                />
+                <div className="container-md" style={ cardContainerStyle }>
+                    { courtCards }
+                </div>
             </div>
         </>
     )

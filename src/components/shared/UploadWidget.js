@@ -1,6 +1,7 @@
 import { useEffect,useRef } from "react"
+import { Button } from "react-bootstrap"
 
-const UploadWidget = () => {
+const UploadWidget = (props) => {
     const cloudinaryRef = useRef()
     const widgetRef = useRef()
     useEffect(() => {
@@ -17,7 +18,7 @@ const UploadWidget = () => {
         })
     }, [])
     return (
-        <button onClick={()=> widgetRef.current.open()}>Upload</button>
+        <Button className="m-2" onClick={()=> widgetRef.current.open()}>Upload Picture</Button>
     )
 }
 

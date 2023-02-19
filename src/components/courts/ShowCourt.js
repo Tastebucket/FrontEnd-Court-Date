@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 // useParams from react-router-dom allows us to see our route parameters
 import { useParams, useNavigate } from 'react-router-dom'
-import { Container, Card, Button } from 'react-bootstrap'
+import { Container, Card, Button, Row, Col } from 'react-bootstrap'
 import { getOneCourt, updateCourt } from '../../api/courts'
 import messages from '../shared/AutoDismissAlert/messages'
 import LoadingScreen from '../shared/LoadingScreen'
@@ -11,6 +11,7 @@ import NewReviewModal from '../reviews/NewReviewModal'
 import EditCourtModal from './UpdateCourt'
 import Mapping from '../../api/map'
 import ShowMap from '../maps/ShowMap'
+import { createPicture } from '../../api/pictures'
 
 
 
@@ -26,6 +27,7 @@ const ShowCourt = (props) => {
 
     const { user, msgAlert } = props
    
+    const uploadPhoto =
 
     useEffect(() => {
         getOneCourt(id)
@@ -62,70 +64,72 @@ const ShowCourt = (props) => {
 
     return (
         <>
-            <ShowMap court={court} />
+            
             <Container className="m-2">
+                <Row>
+                <Col>
                 <Card>
                     <Card.Header>{ court.name }</Card.Header>
                     <Card.Body>
-                        <Card.Text>
-                            <div>
-                                <small>
-                                    Location: { court.location }
-                                </small>
-                            </div>
-                            <div>
-                                <small>
-                                    Number of hoops: { court.numberOfHoops }
-                                </small>
-                            </div>
-                            <div>
-                                <small>
-                                    Number of courts: { court.numberOfCourts }
-                                </small>
-                            </div>
-                            <div>
-                                <small>
-                                    Surface: { court.surface }
-                                </small>
-                            </div>
-                            <div>
-                                <small>
-                                    Type of rims: { court.typeOfRims }
-                                </small>
-                            </div>
-                            <div>
-                                <small>
-                                    Lights: { court.hasLight ? 'yes' : 'no' }
-                                </small>
-                            </div>
-                            <div>
-                                <small>
-                                    Does the hoops have nets? { court.nets ? 'yes' : 'no' }
-                                </small>
-                            </div>
-                    
-                            <div>
-                                <small>
-                                    Indoor: { court.isIndoor ? 'yes' : 'no'}
-                                </small>
-                            </div>
-                            <div>
-                                <small>
-                                    Cost: { court.cost }
-                                </small>
-                            </div>
-                            <div>
-                                <small>
-                                    Hours: { court.hours }
-                                </small>
-                            </div>
-                            <div>
-                                <small>
-                                    Reviews: { reviewCards }
-                                </small>
-                            </div>
-                        </Card.Text>
-                       
+
+                                <Card.Text>
+                                    <div>
+                                        <small>
+                                            Location: { court.location }
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <small>
+                                            Number of hoops: { court.numberOfHoops }
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <small>
+                                            Number of courts: { court.numberOfCourts }
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <small>
+                                            Surface: { court.surface }
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <small>
+                                            Type of rims: { court.typeOfRims }
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <small>
+                                            Lights: { court.hasLight ? 'yes' : 'no' }
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <small>
+                                            Does the hoops have nets? { court.nets ? 'yes' : 'no' }
+                                        </small>
+                                    </div>
+                            
+                                    <div>
+                                        <small>
+                                            Indoor: { court.isIndoor ? 'yes' : 'no'}
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <small>
+                                            Cost: { court.cost }
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <small>
+                                            Hours: { court.hours }
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <small>
+                                            Reviews: { reviewCards }
+                                        </small>
+                                    </div>
+                                </Card.Text>
                     </Card.Body>
                     <Card.Footer>
                         {
@@ -146,6 +150,11 @@ const ShowCourt = (props) => {
                         }
                     </Card.Footer>
                 </Card>
+                </Col>
+                <Col>
+                    <ShowMap court={court} />
+                </Col>
+                </Row>
             </Container>
             <EditCourtModal 
                 user={user}
