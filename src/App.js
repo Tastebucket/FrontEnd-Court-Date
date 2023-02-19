@@ -20,13 +20,14 @@ import CreateCourt from './components/courts/CreateCourt'
 
 const App = () => {
 
-  const [user, setUser] = useState(null)
-  const [msgAlerts, setMsgAlerts] = useState([])
+  	const [user, setUser] = useState(null)
+  	const [msgAlerts, setMsgAlerts] = useState([])
 
-  const clearUser = () => {
-    console.log('clear user ran')
-    setUser(null)
-  }
+
+  	const clearUser = () => {
+    	console.log('clear user ran')
+    	setUser(null)
+  	}
 
 	const deleteAlert = (id) => {
 		setMsgAlerts((prevState) => {

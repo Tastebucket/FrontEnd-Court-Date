@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 import { createCourt } from '../../api/courts'
 import { createCourtSuccess, createCourtFailure } from '../shared/AutoDismissAlert/messages'
 import CourtForm from '../shared/CourtForm'
+import { findLocationName } from '../../api/maps'
 
 // bring in the useNavigate hook from react-router-dom
 import { useNavigate } from 'react-router-dom'
@@ -52,6 +53,39 @@ const CreateCourt = (props) => {
         })
         }
       )
+    
+    const geolocationAPI = navigator.geolocation
+    
+    const getUserCoordinates = () => {
+        if (!geolocationAPI) {
+            console.log('Geolocation API is not available in your browser!')
+        } else {
+            geolocationAPI.getCurrentPosition((position) => {
+                const { coords } = position;
+                console.log('this is lat', coords.latitude);
+                console.log('this is long', coords.longitude);
+                findLocationName(coords.longitude,coords.latitude)
+                    .then(res => {
+                        console.log('this is the geo response', res.data)
+                        setCourt(prevCourt => {
+
+                            const updatedCourt = {
+                                location : res.data.features[0].place_name,
+                                latitude : coords.latitude,
+                                longitude : coords.longitude
+                            }
+                            
+                
+                            return {
+                                ...prevCourt, ...updatedCourt
+                            }
+                    })
+                })
+            }, (error) => {
+                console.log('Something went wrong getting your position!')
+            })
+        }
+    }
 
     const onChange = (e) => {
         e.persist()
@@ -99,7 +133,7 @@ const CreateCourt = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault()
-
+        if (court.latitude && court.longitude) {
         createCourt(user, court)
             // first we'll nav to the show page
             .then(res => { navigate(`/courts/${res.data.court._id}`)})
@@ -119,7 +153,13 @@ const CreateCourt = (props) => {
                     variant: 'danger'
                 })
             })
-
+        } else {
+            msgAlert({
+                heading: 'Oh No!',
+                message: "Please choose a valid address",
+                variant: 'danger'
+            })
+        }   
     }
 
     return (
@@ -129,6 +169,7 @@ const CreateCourt = (props) => {
             handleRetrieve={handleRetrieve}
             handleChange={onChange}
             handleSubmit={onSubmit}
+            getUserCoordinates={getUserCoordinates}
             heading="Add a new court!"
         />
     )

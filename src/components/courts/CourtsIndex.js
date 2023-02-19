@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import SearchBar from '../shared/SearchBar'
+import Rating from '../shared/rating'
 
 // api function from our api file
 import { getAllCourts } from '../../api/courts'
@@ -10,6 +11,7 @@ import { getAllCourts } from '../../api/courts'
 // need our messages from our autodismissalert directory
 import messages from '../shared/AutoDismissAlert/messages'
 import Mapping from '../../api/map'
+import UploadWidget from '../shared/UploadWidget'
 
 
 // this is a styling object. they're a quick easy way add focused css properties to our react components
@@ -44,8 +46,8 @@ const CourtsIndex = (props) => {
                 setError(true)
             })
         getAllCourts()
-        .then(res => setDisplay(res.data.courts))
-        .catch(err => {
+            .then(res => setDisplay(res.data.courts))
+            .catch(err => {
             msgAlert({
                 heading: 'Error getting courts',
                 message: messages.getCourtsFailure,
@@ -79,7 +81,9 @@ const CourtsIndex = (props) => {
     if (!courts) {
         // if no courts loaded yet, display 'loading'
         return <LoadingScreen />
-    }
+    } 
+    // else if (courts.length === 0) {
+
     // } else if (courts.length === 0) {
     //     // otherwise if there ARE no courts, display that message
     //     return (
@@ -99,23 +103,19 @@ const CourtsIndex = (props) => {
         <Card key={ court._id } style={{ width: '30%', margin: 5 }}>
             <Card.Header>{ court.name }</Card.Header>
             <Card.Body>
-                <Card.Text>
+                <Card.Text >
                     {court.location}
                 </Card.Text>
-                {/* <Card.Text>
-                    Number of Courts: {court.numberOfCourts}
-                </Card.Text>
                 <Card.Text>
-                    Number of Hoops: {court.numberOfHoops}
+                    Court Rating:
+                    <Rating />
+                </Card.Text>
+                {/* <Card.Text> (when ratings are setup)
+                    {court.rating}
                 </Card.Text> */}
                 <Card.Text>
                     <Link to={`/courts/${court._id}`} className="btn btn-info">View { court.name }</Link>
                 </Card.Text>
-                {/* { court.owner ?
-                <Card.Footer>
-                     owner: {court.owner.email} 
-                </Card.Footer>
-                : null} */}
             </Card.Body>
         </Card>
     ))
@@ -123,6 +123,9 @@ const CourtsIndex = (props) => {
     // return some jsx
     return (
         <> 
+            <div className='container'>
+                <UploadWidget />
+            </div>
             <Mapping courts = {courts} />
             <SearchBar 
                 handleChange={onChange}
