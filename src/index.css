@@ -28,10 +28,10 @@ button {
  }
  
 .on {
-  background-color: yellow;
+  opacity: 100%;
 }
 .off {
-  color: #ccc;
+  opacity: 44%;
 }
 
 html{
