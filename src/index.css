@@ -20,8 +20,15 @@ button {
   cursor: pointer;
   size: 25px;
 }
+
+.on:hover {
+  opacity: 1;
+  -webkit-animation: flash 1s;
+  animation: flash 1s;
+ }
+ 
 .on {
-  color: yellow;
+  background-color: yellow;
 }
 .off {
   color: #ccc;
