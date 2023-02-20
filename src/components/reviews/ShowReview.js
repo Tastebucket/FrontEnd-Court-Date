@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { deleteReview } from '../../api/reviews'
 import EditReviewModal from './EditReviewModal'
-import Rating from '../shared/rating'
+import Rating from '../shared/Rating'
 
 const ShowReview = (props) => {
     const { review, user, court, msgAlert, triggerRefresh } = props
