@@ -49,6 +49,7 @@ const alwaysOptions = (
 
 const Header = ({ user }) => (
 	<Navbar variant='dark' expand='md' className='brown'>
+		<img src= 'https://www.canva.com/design/DAFbILjDdGY/view' />
 		<Navbar.Brand className='ms-2'>
             <Link to='/' style={linkStyle}>
                 Court Date

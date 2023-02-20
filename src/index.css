@@ -83,3 +83,11 @@ p{
   border-radius: 50%;
   cursor: pointer;
 }
+nav a {
+  transition: 0.4s ease
+}
+nav a:hover {
+  margin:0;
+  padding: 20px 0; 
+  background-color: #4D3531;
+}
