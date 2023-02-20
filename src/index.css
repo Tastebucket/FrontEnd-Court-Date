@@ -89,13 +89,7 @@ p{
 }
 
 
-.card-header{
-  background-color: #FC9047;
-}
 
-.header {
-  background-color: #AC5043;
-}
 
 nav a {
   transition: 0.4s ease
@@ -103,5 +97,5 @@ nav a {
 nav a:hover {
   margin:0;
   padding: 20px 0; 
-  background-color: #AC5043;
+  background-color: #4D3531;
 }
