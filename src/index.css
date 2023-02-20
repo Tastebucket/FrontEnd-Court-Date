@@ -14,6 +14,7 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+    color: #FFF7F6;
 }
 
 button {
@@ -23,21 +24,77 @@ button {
   cursor: pointer;
   size: 25px;
 }
+
+.on:hover {
+  opacity: 1;
+  -webkit-animation: flash 1s;
+  animation: flash 1s;
+ }
+ 
 .on {
-  color: yellow;
+  opacity: 100%;
 }
 .off {
-  color: #ccc;
+  opacity: 44%;
 }
+
+html{
+  background-color: #4D3531;
+}
+
+#root {
+  background-color: #4D3531;
+  color: #FFF7F6;
+}
+
+.brown {
+  background-color: #AC5043;
+}
+
+.orange-link {
+  background-color: #DCB5AE;
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+  font-weight: 500;
+}
+
+.orange {
+  font-weight: 700;
+  color: black;
+}
+
+.white {
+  color: #FFF7F6;
+}
+
+.black {
+  color: black;
+}
+
+h5{
+  color: black;
+}
+
+p{
+  color: black;
+}
+.marker {
+  background-image: url('https://www.clipartmax.com/png/small/32-325001_image-basketball-hoop-clipart-png.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
 .card-header{
   background-color: #FC9047;
 }
 
 .header {
   background-color: #AC5043;
-}
-#root {
-  background-color:#4D3531;
 }
 
 nav a {

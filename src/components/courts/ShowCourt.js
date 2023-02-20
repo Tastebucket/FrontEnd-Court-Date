@@ -60,7 +60,7 @@ const ShowCourt = (props) => {
     if(!court) {
         return <LoadingScreen />
     }
-
+    console.log('this is court picture', court.picture[0])
     return (
         <>
             
@@ -68,7 +68,8 @@ const ShowCourt = (props) => {
                 <Row>
                 <Col>
                 <Card>
-                    <Card.Header>{ court.name }</Card.Header>
+                <Card.Header style={{ backgroundColor: '#FC9047'}}><h5>{ court.name }</h5></Card.Header>
+
                     <Card.Body>
                             <Row>
                                 <Col>

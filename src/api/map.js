@@ -31,8 +31,12 @@ if (!longit || !latit) {
         const long = court.longitude.toString()
         const lat = court.latitude.toString()
         return(
-            <Marker key={court._id} longitude={long} latitude={lat} 
-            />)
+            <>
+            <Marker key={court._id} longitude={long} latitude={lat}>
+            <div className="marker" />
+            </Marker>
+            </>
+            )
         })
 
 return (

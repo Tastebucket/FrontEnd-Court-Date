@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
 const linkStyle = {
     color: 'white',
-    textDecoration: 'none'
+    textDecoration: 'none',
 }
 const authenticatedOptions = (
 	<>
@@ -48,7 +48,7 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar className='thatnav' bg='primary' variant='dark' expand='md'>
+	<Navbar variant='dark' expand='md' className='brown'>
 		<Navbar.Brand className='ms-2'>
             <Link to='/' style={linkStyle}>
                 Court Date

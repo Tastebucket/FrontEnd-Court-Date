@@ -135,7 +135,7 @@ const CourtsIndex = (props) => {
                     {court.rating}
                 </Card.Text> */}
                 <Card.Text>
-                    <Link to={`/courts/${court._id}`} className="btn btn-info">View { court.name }</Link>
+                    <Link to={`/courts/${court._id}`} className="orange-link">View { court.name }</Link>
                 </Card.Text>
             </Card.Body>
         </Card>
