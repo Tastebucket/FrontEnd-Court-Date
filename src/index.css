@@ -1,3 +1,6 @@
+html {
+  background-color: #4D3531;
+}
 body {
   background-color: #FC9047;
   margin: 0;
@@ -35,4 +38,13 @@ button {
 }
 #root {
   background-color:#4D3531;
+}
+
+nav a {
+  transition: 0.4s ease
+}
+nav a:hover {
+  margin:0;
+  padding: 20px 0; 
+  background-color: #AC5043;
 }

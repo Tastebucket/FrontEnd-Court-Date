@@ -48,7 +48,7 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar className='header' variant='dark' expand='md'>
+	<Navbar className='thatnav' bg='primary' variant='dark' expand='md'>
 		<Navbar.Brand className='ms-2'>
             <Link to='/' style={linkStyle}>
                 Court Date

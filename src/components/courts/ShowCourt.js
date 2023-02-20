@@ -70,7 +70,8 @@ const ShowCourt = (props) => {
                 <Card>
                     <Card.Header>{ court.name }</Card.Header>
                     <Card.Body>
-
+                            <Row>
+                                <Col>
                                 <Card.Text>
                                     <div>
                                         <small>
@@ -128,7 +129,13 @@ const ShowCourt = (props) => {
                                             Reviews: { reviewCards }
                                         </small>
                                     </div>
+                                    
                                 </Card.Text>
+                                </Col>
+                                <Col>
+                                    <Card.Img src={court.picture[0]}/>
+                                </Col>
+                            </Row>
                     </Card.Body>
                     <Card.Footer>
                         {
