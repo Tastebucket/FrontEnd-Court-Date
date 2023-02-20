@@ -1,8 +1,24 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import { updateCourt } from "../../api/courts"
 
-const Rating = () => {  
+const Rating = (props) => {  
+  const {user, court} = props
   const [rating, setRating] = useState()
   const [hover, setHover] = useState()
+  const [state, setState] = useState(false)
+  console.log(rating)
+  console.log(court)
+  useEffect(()=>{
+    setState(true)
+  })
+  useEffect(()=> {
+    if (state === true) {
+      court.rating.push(rating)
+      console.log('this is court after court.rating.push', court)
+      setState(false)
+      updateCourt(user, court)
+    }
+  },[rating])
   return (
     <div className="star-rating">
       {[...Array(5)].map((star, index) => {
