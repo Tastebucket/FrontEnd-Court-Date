@@ -30,7 +30,7 @@ const ShowCourt = (props) => {
 
     useEffect(() => {
         getOneCourt(id)
-            .then(res => setCourt(res.data.court))
+        .then(res => setCourt(res.data.court))
             .catch(err => {
                 msgAlert({
                     heading: 'Error getting courts',
@@ -38,26 +38,26 @@ const ShowCourt = (props) => {
                     variant: 'danger'
                 })
             })
-    }, [updated])
-
-    let reviewCards
-    if (court) {
-        if (court.review.length > 0) {
-            reviewCards = court.review.map(review => (
-                <ShowReview
-                    key={review.id} 
-                    review={review}
-                    user={user}
-                    court={court}
-                    msgAlert={msgAlert}
-                    triggerRefresh={() => setUpdated(prev => !prev)}
-                />
-            ))
+        }, [updated])
+        
+        
+        let reviewCards
+        if (court) {
+            if (court.review.length > 0) {
+                reviewCards = court.review.map(review => (
+                    <ShowReview
+                        key={review.id} 
+                        review={review}
+                        user={user}
+                        court={court}
+                        msgAlert={msgAlert}
+                        triggerRefresh={() => setUpdated(prev => !prev)}
+                    />
+                ))
+            }
         }
-    }
-
-
-    if(!court) {
+        
+        if(!court) {
         return <LoadingScreen />
     }
     console.log('this is court picture', court.picture[0])
@@ -127,10 +127,9 @@ const ShowCourt = (props) => {
                                     </div>
                                     <div>
                                         <small>
-                                            Reviews: { reviewCards }
+                                            Average rating: <Rating court={court} />
                                         </small>
                                     </div>
-                                    
                                 </Card.Text>
                                 </Col>
                                 <Col>
@@ -160,6 +159,7 @@ const ShowCourt = (props) => {
                         }
                     </Card.Footer>
                 </Card>
+                { reviewCards }
                 </Col>
                 <Col>
                     <ShowMap court={court} />
@@ -175,9 +175,9 @@ const ShowCourt = (props) => {
                 updateCourt={updateCourt}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-
+                
                 court={court}
-            />
+                />
 
              <NewReviewModal
                 user={user}
@@ -186,7 +186,7 @@ const ShowCourt = (props) => {
                 handleClose={() => setCreateModalShow(false)}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-            />
+                />
         </>
     )
 }
