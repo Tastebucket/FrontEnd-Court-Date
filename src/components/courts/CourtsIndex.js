@@ -3,12 +3,8 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import SearchBar from '../shared/SearchBar'
-<<<<<<< HEAD
-import Rating from '../shared/rating'
 import { dist } from '../shared/Distance'
-=======
 import Rating from '../shared/Rating'
->>>>>>> ac12f6678e7e106621260124024b78fb24ecaec2
 
 // api function from our api file
 import { getAllCourts } from '../../api/courts'
@@ -17,7 +13,7 @@ import { getAllCourts } from '../../api/courts'
 import messages from '../shared/AutoDismissAlert/messages'
 import Mapping from '../../api/map'
 import UploadWidget from '../shared/UploadWidget'
-import { Container } from 'react-bootstrap'
+import { Row, Col, Container } from 'react-bootstrap'
 
 
 // this is a styling object. they're a quick easy way add focused css properties to our react components
@@ -122,8 +118,8 @@ const CourtsIndex = (props) => {
         console.log('this is court.latitude', court.latitude)
         console.log('this is the lat from state', lat)
         return (
-        <Card key={ court._id } style={{ width: '30%', margin: 5 }}>
-            <Card.Header>{ court.name }</Card.Header>
+        <Card key={ court._id } style={{ width: '100%', margin: 0 }}>
+            <Card.Header style={{ backgroundColor: '#FC9047'}}><h5>{ court.name }</h5></Card.Header>
             <Card.Body>
                 <Card.Text >
                     {court.location}
@@ -150,16 +146,22 @@ const CourtsIndex = (props) => {
     return (
         <> 
             <div className='container-lg p-4'>
-                <Container fluid="sm">
-                <Mapping courts = {courts} latit={lat} longit={lng} />
-                </Container>
                 <SearchBar 
                     handleChange={onChange}
                     // handleDelete={handleDelete}
                 />
-                <div className="container-md" style={ cardContainerStyle }>
-                    { courtCards }
-                </div>
+                <Row>
+                    <Col className='p-0'>
+                        <div className="container-md overflow-auto" style={{ height:'600px'}}>
+                            { courtCards }
+                        </div>
+                    </Col>
+                    <Col className='p-0'>
+                        <Container fluid="sm" style={{display: "flex", justifyContent: "center"}}>
+                            <Mapping courts = {courts} latit={lat} longit={lng} />
+                        </Container>
+                    </Col>
+                </Row>
             </div>
         </>
     )

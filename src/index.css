@@ -88,7 +88,9 @@ p{
   cursor: pointer;
 }
 
-
+.card-body {
+  background-color: #DCB5AE;
+}
 
 
 nav a {
