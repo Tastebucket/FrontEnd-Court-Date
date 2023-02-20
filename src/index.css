@@ -1,4 +1,8 @@
+html {
+  background-color: #4D3531;
+}
 body {
+  background-color: #FC9047;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -20,11 +24,18 @@ button {
   cursor: pointer;
   size: 25px;
 }
+
+.on:hover {
+  opacity: 1;
+  -webkit-animation: flash 1s;
+  animation: flash 1s;
+ }
+ 
 .on {
-  color: yellow;
+  opacity: 100%;
 }
 .off {
-  color: #ccc;
+  opacity: 44%;
 }
 
 html{
@@ -67,4 +78,24 @@ h5{
 
 p{
   color: black;
+}
+.marker {
+  background-image: url('https://www.clipartmax.com/png/small/32-325001_image-basketball-hoop-clipart-png.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+
+
+nav a {
+  transition: 0.4s ease
+}
+nav a:hover {
+  margin:0;
+  padding: 20px 0; 
+  background-color: #4D3531;
 }

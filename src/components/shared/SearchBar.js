@@ -1,8 +1,8 @@
-import { Container, Form } from "react-bootstrap"
+import { Container, Form, Button } from "react-bootstrap"
 
 
 const SearchBar = (props) => {
-    console.log(props)
+    // console.log(props)
     const {handleChange} = props
 
     return (
