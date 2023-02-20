@@ -30,8 +30,12 @@ if (!courts) {
         const long = court.longitude.toString()
         const lat = court.latitude.toString()
         return(
-            <Marker key={court._id} longitude={long} latitude={lat} 
-            />)
+            <>
+            <Marker key={court._id} longitude={long} latitude={lat}>
+            <div className="marker" />
+            </Marker>
+            </>
+            )
         })
 
 return (
@@ -39,7 +43,7 @@ return (
 <>
     <Map
     mapboxAccessToken= {process.env.REACT_APP_MAPBOX_TOKEN}
-    style={{ marginLeft: "5%", justifyContent: "center", width: "90%", height: "250px", borderRadius: "10px", border: "2px solid blue"}}
+    style={{ justifyContent: "center", width: "100%", height: "250px" }}
     initialViewState={{ longitude: lng, latitude: lat, zoom: 5 }}
     mapStyle="mapbox://styles/mapbox/streets-v9"
     >

@@ -16,7 +16,7 @@ const Rating = () => {
             onMouseEnter={() => setHover(index)}
             onMouseLeave={() => setHover(rating)}
           >
-            <span className="star">&#9733;</span>
+            <span className="star">&#127936;</span>
           </button>
         )
       })}
