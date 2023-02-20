@@ -100,7 +100,7 @@ const CourtsIndex = (props) => {
     // once we have an array of courts, loop over them
     // produce one card for every court
     const courtCards = courts.map(court => (
-        <Card key={ court._id } style={{ width: '30%', margin: 5 }}>
+        <Card key={ court._id } style={{ width: '30%', margin: 3,  }}>
             <Card.Header style={{ backgroundColor: '#FC9047'}} className='orange'><h5>{ court.name }</h5></Card.Header>
             <Card.Body >
                 <Card.Text >
@@ -119,15 +119,15 @@ const CourtsIndex = (props) => {
             </Card.Body>
         </Card>
     ))
-
+    
     // return some jsx
     return (
         <> 
-            <Mapping courts = {courts} />
             <SearchBar 
                 handleChange={onChange}
                 // handleDelete={handleDelete}
             />
+                <Mapping courts = {courts} />
             <div className="container-md" style={ cardContainerStyle }>
                 { courtCards }
             </div>
