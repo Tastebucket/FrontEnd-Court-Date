@@ -12,7 +12,7 @@ import EditCourtModal from './UpdateCourt'
 import Mapping from '../../api/map'
 import ShowMap from '../maps/ShowMap'
 import UploadWidget from '../shared/UploadWidget'
-
+import Rating from '../shared/Rating'
 
 
 const ShowCourt = (props) => {
@@ -155,7 +155,8 @@ const ShowCourt = (props) => {
                 </Card>
                 
             </Container>
-          
+            <h5><Rating court={court} user={user} /></h5>
+            
             <EditCourtModal 
                 user={user}
                 show={editModalShow}
