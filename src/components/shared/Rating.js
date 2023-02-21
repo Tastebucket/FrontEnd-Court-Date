@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react"
 import { updateCourt } from "../../api/courts"
+import { createRating } from "../../api/rating"
 
+// need to user and court props from parent
 const Rating = (props) => {  
   const {user, court} = props
   const [rating, setRating] = useState()
   const [hover, setHover] = useState()
   const [state, setState] = useState(false)
-  console.log(rating)
-  console.log(court)
   useEffect(()=>{
     setState(true)
   })
   useEffect(()=> {
     if (state === true) {
-      court.rating.push(rating)
+      // court.rating.push(rating)
+      const theRating = Number(rating)
+      console.log(theRating)
       console.log('this is court after court.rating.push', court)
       setState(false)
-      updateCourt(user, court)
+      createRating(user, court._id, theRating)
+        
     }
   },[rating])
   return (
