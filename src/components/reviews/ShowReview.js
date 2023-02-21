@@ -3,10 +3,11 @@ import { Card, Button } from 'react-bootstrap'
 import { deleteReview } from '../../api/reviews'
 import EditReviewModal from './EditReviewModal'
 import Rating from '../shared/Rating'
+import { ShowRating } from '../shared/ShowRating'
 
 const ShowReview = (props) => {
-    const { review, user, court, msgAlert, triggerRefresh } = props
-
+    const { review, user, court, msgAlert, triggerRefresh, ratingAverage } = props
+    console.log(ratingAverage)
     // here's our hook to display the EditreviewModal
     const [editModalShow, setEditModalShow] = useState(false)
     // console.log('this is the review in showreview', review)
@@ -56,9 +57,7 @@ const ShowReview = (props) => {
                 <Card.Header>{review.name}</Card.Header>
                 <Card.Body>
                     {review.note}
-                    <br/>
-                    Court Rating:
-                    <Rating />
+              
                     
                 </Card.Body>
                 <Card.Footer>

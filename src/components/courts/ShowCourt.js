@@ -13,11 +13,13 @@ import Mapping from '../../api/map'
 import ShowMap from '../maps/ShowMap'
 import UploadWidget from '../shared/UploadWidget'
 import Rating from '../shared/Rating'
-
+import { ShowRating } from '../shared/ShowRating'
+import PictureModal from '../shared/PictureModal'
 
 const ShowCourt = (props) => {
     const [court, setCourt] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
+    const [pictureModalShow, setPictureModalShow] = useState(false)
     const [createModalShow, setCreateModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
@@ -26,7 +28,7 @@ const ShowCourt = (props) => {
 
     const { user, msgAlert } = props
    
-    const uploadPhoto =
+
 
     useEffect(() => {
         getOneCourt(id)
@@ -38,26 +40,37 @@ const ShowCourt = (props) => {
                     variant: 'danger'
                 })
             })
-        }, [updated])
-        
-        
-        let reviewCards
-        if (court) {
-            if (court.review.length > 0) {
-                reviewCards = court.review.map(review => (
-                    <ShowReview
-                        key={review.id} 
-                        review={review}
-                        user={user}
-                        court={court}
-                        msgAlert={msgAlert}
-                        triggerRefresh={() => setUpdated(prev => !prev)}
-                    />
-                ))
-            }
+    }, [updated])
+    
+    let ratingAverage
+    if (court) {
+        if (court.rating.length > 0) {
+            const numOfRating = court.rating.length
+            const ratingArr = court.rating.map(rating=> rating.rating)
+            const sumOfRatin = ratingArr.reduce((value, a)=> value + a, 0) 
+            ratingAverage = sumOfRatin/numOfRating
         }
-        
-        if(!court) {
+    }
+    console.log(ratingAverage)
+    let reviewCards
+    if (court) {
+        if (court.review.length > 0) {
+            reviewCards = court.review.map(review => (
+                <ShowReview
+                    ratingAverage={ratingAverage}
+                    key={review.id} 
+                    review={review}
+                    user={user}
+                    court={court}
+                    msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
+                />
+            ))
+        }
+    }
+
+    
+    if(!court) {
         return <LoadingScreen />
     }
     console.log('this is court picture', court.picture[0])
@@ -73,7 +86,12 @@ const ShowCourt = (props) => {
                     <Card.Body>
                             <Row>
                                 <Col>
+                                    
                                 <Card.Text>
+                                 
+                                    <div>
+                                        <h5><ShowRating ratingAverage={ratingAverage}/></h5>
+                                    </div>
                                     <div>
                                         <small>
                                             Location: { court.location }
@@ -125,11 +143,13 @@ const ShowCourt = (props) => {
                                             Hours: { court.hours }
                                         </small>
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <small>
                                             Average rating: <Rating court={court} />
                                         </small>
-                                    </div>
+
+                                    </div> */}
+                                    
                                 </Card.Text>
                                 </Col>
                                 <Col>
@@ -145,6 +165,11 @@ const ShowCourt = (props) => {
                                 className='m-2' 
                                 onClick={() => setCreateModalShow(true)}>
                                 Leave a Review
+                            </Button>
+                            <Button 
+                                className='m-2' 
+                                onClick={() => setPictureModalShow(true)}>
+                                View Pictures
                             </Button>
                             <Button 
                                 className="m-2" variant="warning"
@@ -166,8 +191,11 @@ const ShowCourt = (props) => {
                 </Col>
                 </Row>
             </Container>
-            <h5><Rating court={court} user={user} /></h5>
-            
+
+                <div className='container'>
+                    Reviews: { reviewCards }                    
+                </div>
+
             <EditCourtModal 
                 user={user}
                 show={editModalShow}
