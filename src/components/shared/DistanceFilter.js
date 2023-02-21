@@ -12,7 +12,7 @@ const {setDistance} = props
                     <Form.Select 
                         aria-label="filter-distance"
                         name="distance"
-                        defaultValue='20000'
+                        defaultValue='5'
                         onChange={setDistance}
                     >
                         <option>Open this select menu</option>

@@ -33,16 +33,16 @@ if (!longit || !latit) {
         const lat = court.latitude.toString()
         return(
             <>
-            <Marker key={court._id} longitude={long} latitude={lat}>
+            <Marker key={court.id} longitude={long} latitude={lat}>
             {/* <div className="marker" /> */}
-            <button className="marker" onClick={e => {
-                e.preventDefault()
-                setSelectedCourt(court)
-                console.log('this is the selected court', selectedCourt)
+                <button className="marker" onClick={e => {
+                    e.preventDefault()
+                    setSelectedCourt(court)
+                    console.log('this is the selected court', selectedCourt)
 
-            }}>
-                <img src="https://www.clipartmax.com/png/small/32-325001_image-basketball-hoop-clipart-png.png" alt="Hoop Icon"/>
-            </button>
+                }}>
+                    <img src="https://www.clipartmax.com/png/small/32-325001_image-basketball-hoop-clipart-png.png" alt="Hoop Icon"/>
+                </button>
             </Marker>
             {selectedCourt ? (
                 <Popup latitude={selectedCourt.latitude}

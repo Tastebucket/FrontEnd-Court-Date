@@ -15,6 +15,7 @@ import UploadWidget from '../shared/UploadWidget'
 import Rating from '../shared/Rating'
 import { ShowRating } from '../shared/ShowRating'
 import PictureModal from '../shared/PictureModal'
+import { dist } from '../shared/Distance'
 
 const ShowCourt = (props) => {
     const [court, setCourt] = useState(null)
@@ -22,13 +23,23 @@ const ShowCourt = (props) => {
     const [pictureModalShow, setPictureModalShow] = useState(false)
     const [createModalShow, setCreateModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
-
+    const [lng, setLng] = useState(null)
+    const [lat, setLat] = useState(null)
     const { id } = useParams()
     // const navigate = useNavigate()
-
+    const geolocationAPI = navigator.geolocation
     const { user, msgAlert } = props
    
-
+    useEffect(() => {
+        geolocationAPI.getCurrentPosition((position) => {
+            const { coords } = position;
+            console.log('this is lat', coords.latitude);
+            console.log('this is long', coords.longitude);
+            setLat(coords.latitude)
+            setLng(coords.longitude)
+        })
+    },[])
+    let distance
 
     useEffect(() => {
         getOneCourt(id)
@@ -44,6 +55,7 @@ const ShowCourt = (props) => {
     
     let ratingAverage
     if (court) {
+        distance = dist(lat, court.latitude, lng, court.longitude)
         if (court.rating.length > 0) {
             const numOfRating = court.rating.length
             const ratingArr = court.rating.map(rating=> rating.rating)
@@ -51,7 +63,6 @@ const ShowCourt = (props) => {
             ratingAverage = sumOfRatin/numOfRating
         }
     }
-    console.log(ratingAverage)
     let reviewCards
     if (court) {
         if (court.review.length > 0) {
@@ -89,7 +100,7 @@ const ShowCourt = (props) => {
                                 
                                     
                                 <Card.Text>
-                                 
+                                    <h4>{ distance.toFixed(2) } Miles Away</h4>
                                     <div>
                                         <h5><ShowRating ratingAverage={ratingAverage}/></h5>
                                     </div>
@@ -180,14 +191,16 @@ const ShowCourt = (props) => {
                 <Col>
                     <div style={{width: '100%'}}>
                     <ShowMap court={court} />
-                    <div style={{backgroundImage: `url(${court.picture[0]})`, backgroundSize: "cover", height: "250px", borderRadius:'15px', border: "1px solid #AC5043"}}>
-                        <button 
-                        className='clear'
-                        onClick={() => setPictureModalShow(true)}
-                        >
-                            View all pictures
-                        </button>
-                    </div>
+                        {court.picture.length >=1 ? 
+                            <div style={{backgroundImage: `url(${court.picture[0]})`, backgroundSize: "cover", height: "250px", borderRadius:'15px', border: "1px solid #AC5043"}}>
+                                <button 
+                                className='clear'
+                                onClick={() => setPictureModalShow(true)}
+                                >
+                                    View all pictures
+                                </button>
+                            </div>
+                        : null}
                     </div>
                 </Col>
                 </Row>

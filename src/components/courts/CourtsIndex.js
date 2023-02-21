@@ -34,10 +34,10 @@ const CourtsIndex = (props) => {
     const [error, setError] = useState(false)
     const [result, setResult] = useState(null)
     const [display, setDisplay] = useState(null)
-    const [zoom, setZoom] = useState(4)
+    const [zoom, setZoom] = useState(11)
     const [lng, setLng] = useState(null)
     const [lat, setLat] = useState(null)
-    const [distanceFilter, setDistanceFilter] = useState(1000)
+    const [distanceFilter, setDistanceFilter] = useState(5)
 
 
     // console.log('these are the courts in index', courts)
@@ -195,7 +195,7 @@ const CourtsIndex = (props) => {
 
     return (
         <> 
-            <div className='container-lg p-4' style={{height:'90vh'}}>
+            <div className='container-lg p-4' style={{height:'90vh', marginBottom: '20px'}}>
                 <SearchBar 
                     handleChange={onChange}
                     // handleDelete={handleDelete}
