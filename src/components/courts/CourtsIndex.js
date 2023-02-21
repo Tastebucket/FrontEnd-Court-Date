@@ -3,8 +3,10 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import SearchBar from '../shared/SearchBar'
+
 import { dist } from '../shared/Distance'
 import Rating from '../shared/Rating'
+
 
 // api function from our api file
 import { getAllCourts } from '../../api/courts'
