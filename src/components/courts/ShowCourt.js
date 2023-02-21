@@ -13,11 +13,13 @@ import Mapping from '../../api/map'
 import ShowMap from '../maps/ShowMap'
 import UploadWidget from '../shared/UploadWidget'
 import Rating from '../shared/Rating'
+import PictureModal from '../shared/PictureModal'
 
 
 const ShowCourt = (props) => {
     const [court, setCourt] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
+    const [pictureModalShow, setPictureModalShow] = useState(false)
     const [createModalShow, setCreateModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
@@ -26,7 +28,7 @@ const ShowCourt = (props) => {
 
     const { user, msgAlert } = props
    
-    const uploadPhoto =
+
 
     useEffect(() => {
         getOneCourt(id)
@@ -148,6 +150,11 @@ const ShowCourt = (props) => {
                                 Leave a Review
                             </Button>
                             <Button 
+                                className='m-2' 
+                                onClick={() => setPictureModalShow(true)}>
+                                View Pictures
+                            </Button>
+                            <Button 
                                 className="m-2" variant="warning"
                                 onClick={() => setEditModalShow(true)}>
                                 Edit {court.name}
@@ -167,7 +174,11 @@ const ShowCourt = (props) => {
                 </Row>
             </Container>
             <h5><Rating court={court} user={user} /></h5>
-            
+            <PictureModal 
+            show={pictureModalShow}
+            pictures={court.picture}
+            handleClose={() => setPictureModalShow(false)}
+            />
             <EditCourtModal 
                 user={user}
                 show={editModalShow}
