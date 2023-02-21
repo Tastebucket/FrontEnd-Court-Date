@@ -12,7 +12,7 @@ const SearchBar = (props) => {
                 <Form.Group className="mb-3">
                     <Form.Label>Search Court</Form.Label>
                     <Form.Control 
-                        placeholder="Court name or location"   
+                        placeholder="Court name"   
                     />
                     <Form.Text className="text-muted">
                     You can filter the court here.

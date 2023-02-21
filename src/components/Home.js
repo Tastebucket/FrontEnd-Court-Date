@@ -1,5 +1,5 @@
 import CourtsIndex from "./courts/CourtsIndex"
-import Mapping from '../api/map.js'
+import IndexMap from './maps/IndexMap.js'
 import '../index.css'
 
 const Home = (props) => {
@@ -9,7 +9,7 @@ const Home = (props) => {
 	return (
 		<>
 			
-			<CourtsIndex className='background' msgAlert= { props.msgAlert }/>
+			<CourtsIndex className='background' msgAlert= { props.msgAlert } user={user}/>
 			
 		</> 
 	)
