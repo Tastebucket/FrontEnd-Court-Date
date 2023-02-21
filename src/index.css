@@ -59,10 +59,16 @@ html{
 
 .orange-link {
   background-color: #DCB5AE;
+  border: 1px solid #AC5043;
   text-decoration: none;
   color: black;
   padding: 5px;
   font-weight: 500;
+}
+.orange-link:hover {
+  background-color: #FFF7F6;
+  color: #000;
+  border: none;
 }
 .clear {
   background-color: transparent;
@@ -92,11 +98,10 @@ h5{
 p{
   color: black;
 }
-.marker {
-  background-image: url('https://www.clipartmax.com/png/small/32-325001_image-basketball-hoop-clipart-png.png');
-  background-size: cover;
-  width: 50px;
-  height: 50px;
+.marker img{
+  background: transparent;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
 }

@@ -1,36 +1,19 @@
 import "mapbox-gl/dist/mapbox-gl.css"
 import Map, { Marker, NavigationControl, Popup, FullscreenControl, GeolocateControl } from "react-map-gl"
 import { useState, useCallback, useEffect } from "react"
-import LoadingScreen from "../components/shared/LoadingScreen"
-
+import LoadingScreen from "../shared/LoadingScreen"
+import { Card, Row, Col } from "react-bootstrap"
+import { Link } from "react-router-dom"
 // import { geocoding } from '@mapbox/mapbox-sdk/services/geocoding'
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
 // import * as CourtsIndex from "src/components/courts/CourtsIndex.js"
 
-export const Mapping = (props) => {
-const [zoom,setZoom] = useState(13)
-const { courts, longit, latit, filter} = props
+export const IndexMap = (props) => {
+const { courts, longit, latit, zoom} = props
+const [selectedCourt, setSelectedCourt] = useState(null)
 // console.log('these are the courts', courts)
 console.log(' this is zoom', zoom)
-const onZoom = ()=>{
-    console.log('on zoom ran')
-    if (filter == 1) {
-        setZoom(13)
-    } else if (filter == 5) {
-        setZoom(11)
-    } else if (filter == 25) {
-        setZoom(9)
-    } else if (filter == 50) {
-        setZoom(7)
-    } else {
-        setZoom(4)
-    }
-}
-useEffect(() =>{
-    onZoom()
-})
-
 const handleRetrieve = useCallback(
     (res) => {
       console.log('these are res features',res)
@@ -51,8 +34,33 @@ if (!longit || !latit) {
         return(
             <>
             <Marker key={court._id} longitude={long} latitude={lat}>
-            <div className="marker" />
+            {/* <div className="marker" /> */}
+            <button className="marker" onClick={e => {
+                e.preventDefault()
+                setSelectedCourt(court)
+                console.log('this is the selected court', selectedCourt)
+
+            }}>
+                <img src="https://www.clipartmax.com/png/small/32-325001_image-basketball-hoop-clipart-png.png" alt="Hoop Icon"/>
+            </button>
             </Marker>
+            {selectedCourt ? (
+                <Popup latitude={selectedCourt.latitude}
+                longitude={selectedCourt.longitude}
+                style={{ backgroundColor:'#DCB5AE' }}
+                onClose={()=>{
+                    setSelectedCourt(null)
+                }} >
+                    <div>
+                        <h5>{selectedCourt.name}</h5>
+                        <Link style={{position:'relative', float:'right'}}to={`/courts/${selectedCourt._id}`} className="orange-link">View</Link>
+                        <p>{selectedCourt.surface}</p>
+                        <p>{selectedCourt.numberOfCourts} courts</p>
+                        <p>{selectedCourt.numberOfHoops} hoops</p>
+                        <img style={{width: '80%'}}src={selectedCourt.picture[0]} />
+                    </div>    
+                </Popup>
+            ): null}
             </>
             )
         })
@@ -76,4 +84,4 @@ return (
     )
 }
 
-export default Mapping
+export default IndexMap

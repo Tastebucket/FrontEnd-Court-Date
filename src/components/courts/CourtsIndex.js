@@ -12,7 +12,7 @@ import { getAllCourts } from '../../api/courts'
 
 // need our messages from our autodismissalert directory
 import messages from '../shared/AutoDismissAlert/messages'
-import Mapping from '../../api/map'
+import IndexMap from '../maps/IndexMap'
 import UploadWidget from '../shared/UploadWidget'
 import { Row, Col, Container } from 'react-bootstrap'
 import DistanceFilter from '../shared/DistanceFilter'
@@ -33,10 +33,11 @@ const CourtsIndex = (props) => {
     const [error, setError] = useState(false)
     const [result, setResult] = useState(null)
     const [display, setDisplay] = useState(null)
-    const [zoom, setZoom] = useState(13)
+    const [zoom, setZoom] = useState(4)
     const [lng, setLng] = useState(null)
     const [lat, setLat] = useState(null)
-    const [distanceFilter, setDistanceFilter] = useState(5)
+    const [distanceFilter, setDistanceFilter] = useState(1000)
+
 
     // console.log('these are the courts in index', courts)
     // pull the message alert (msgAlert) from props
@@ -47,17 +48,18 @@ const CourtsIndex = (props) => {
         const filter = e.target.value
         console.log('this is filter',filter)
         setDistanceFilter(filter)
-        // if (filter === 1) {
-        //     setZoom(13)
-        // } else if (filter == 5) {
-        //     setZoom(11)
-        // } else if (filter == 25) {
-        //     setZoom(9)
-        // } else if (filter == 50) {
-        //     setZoom(7)
-        // } else {
-        //     setZoom(4)
-        // }
+            console.log('on zoom ran')
+            if (filter == 1) {
+                setZoom(13)
+            } else if (filter == 5) {
+                setZoom(11)
+            } else if (filter == 25) {
+                setZoom(9)
+            } else if (filter == 50) {
+                setZoom(7)
+            } else {
+                setZoom(4)
+            }
 
     }
     // get our courts from the api when the component mounts
@@ -152,22 +154,29 @@ const CourtsIndex = (props) => {
                 <Card key={ court.theCourt._id } style={{ width: '100%', margin: 0 }}>
                     <Card.Header style={{ backgroundColor: '#FC9047'}}><h5>{ court.theCourt.name }</h5></Card.Header>
                     <Card.Body>
-                        <Card.Text >
-                            {court.theCourt.location}
-                        </Card.Text>
-                        <Card.Text>
-                            Court Rating:
-                            <Rating />
-                        </Card.Text>
-                        <Card.Text>
-                            { distance.toFixed(2) } Miles Away
-                        </Card.Text>
-                        {/* <Card.Text> (when ratings are setup)
-                            {court.rating}
-                        </Card.Text> */}
-                        <Card.Text>
-                            <Link to={`/courts/${court.theCourt._id}`} className="orange-link">View { court.theCourt.name }</Link>
-                        </Card.Text>
+                        <Row>
+                            <Col>
+                                <Card.Text >
+                                    {court.theCourt.location}
+                                </Card.Text>
+                                <Card.Text>
+                                    Court Rating:
+                                    <Rating />
+                                </Card.Text>
+                                <Card.Text>
+                                    { distance.toFixed(2) } Miles Away
+                                </Card.Text>
+                                {/* <Card.Text> (when ratings are setup)
+                                    {court.rating}
+                                </Card.Text> */}
+                                <Card.Text>
+                                    <Link to={`/courts/${court.theCourt._id}`} className="orange-link">View { court.theCourt.name }</Link>
+                                </Card.Text>
+                            </Col>
+                            <Col>
+                            <Card.Img src={court.theCourt.picture[0]}/>
+                            </Col>
+                        </Row>
                     </Card.Body>
                 </Card>
                 )
@@ -175,40 +184,7 @@ const CourtsIndex = (props) => {
         })
     }
     getCourtDist()
-    // once we have an array of courts, loop over them
-    // produce one card for every court
-    // const courtCards = courts.map(court => {
-    //     const distance = dist(lat, court.latitude, lng, court.longitude)
-    //     console.log(`${distance} miles away`)
-    //     console.log('this is court.latitude', court.latitude)
-    //     console.log('this is the lat from state', lat)
-    //     return (
-    //     <Card key={ court._id } style={{ width: '100%', margin: 0 }}>
-    //         <Card.Header style={{ backgroundColor: '#FC9047'}}><h5>{ court.name }</h5></Card.Header>
-    //         <Card.Body>
-    //             <Card.Text >
-    //                 {court.location}
-    //             </Card.Text>
-    //             <Card.Text>
-    //                 Court Rating:
-    //                 <Rating />
-    //             </Card.Text>
-    //             <Card.Text>
-    //                 { distance.toFixed(2) } Miles Away
-    //             </Card.Text>
-    //             {/* <Card.Text> (when ratings are setup)
-    //                 {court.rating}
-    //             </Card.Text> */}
-    //             <Card.Text>
-    //                 <Link to={`/courts/${court._id}`} className="orange-link">View { court.name }</Link>
-    //             </Card.Text>
-    //         </Card.Body>
-    //     </Card>
-    //     )
-    // })
-    // console.log('these are the court cards', courtCards)
 
-    // return some jsx
     return (
         <> 
             <div className='container-lg p-4'>
@@ -227,7 +203,7 @@ const CourtsIndex = (props) => {
                     </Col>
                     <Col className='mt-4 p-0'>
                         <Container fluid="sm" style={{display: "flex", justifyContent: "center"}}>
-                            <Mapping courts = {courts} latit={lat} longit={lng} filter={distanceFilter}/>
+                            <IndexMap courts = {courts} latit={lat} longit={lng} zoom={zoom}/>
                         </Container>
                     </Col>
                 </Row>

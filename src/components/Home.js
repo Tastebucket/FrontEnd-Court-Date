@@ -1,5 +1,5 @@
 import CourtsIndex from "./courts/CourtsIndex"
-import Mapping from '../api/map.js'
+import IndexMap from './maps/IndexMap.js'
 import '../index.css'
 
 const Home = (props) => {
