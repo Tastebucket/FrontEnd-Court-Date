@@ -24,4 +24,4 @@ const PictureModal = (props) => {
     )
 }
 
-export default PictureModal
+export default PictureModalg
