@@ -16,6 +16,7 @@ import IndexMap from '../maps/IndexMap'
 import UploadWidget from '../shared/UploadWidget'
 import { Row, Col, Container } from 'react-bootstrap'
 import DistanceFilter from '../shared/DistanceFilter'
+import { ShowRating } from '../shared/ShowRating'
 
 
 // this is a styling object. they're a quick easy way add focused css properties to our react components
@@ -144,6 +145,16 @@ const CourtsIndex = (props) => {
         let courty = courtDist.sort((a,b) => (a.milesAway > b.milesAway) ? 1 : -1)
         courtCards = courtDist.map(court => {
             const distance = dist(lat, court.theCourt.latitude, lng, court.theCourt.longitude)
+            let ratingAverage = 0
+            if (court) {
+                if (court.theCourt.rating.length > 0) {
+                    const numOfRating = court.theCourt.rating.length
+                    const ratingArr = court.theCourt.rating.map(rating=> rating.rating)
+                    const sumOfRatin = ratingArr.reduce((value, a)=> value + a, 0) 
+                    ratingAverage = sumOfRatin/numOfRating
+                    console.log('this is the rating average', ratingAverage)
+                }
+            }
             if (court.milesAway<= distanceFilter) {
                 return (
                 <Card key={ court.theCourt._id } style={{ width: '100%', margin: 0, borderRadius:'0'}}>
@@ -156,7 +167,7 @@ const CourtsIndex = (props) => {
                                 </Card.Text>
                                 <Card.Text>
                                     Court Rating:
-                                    <Rating />
+                                    <ShowRating ratingAverage={ratingAverage}/>
                                 </Card.Text>
                                 <Card.Text>
                                     { distance.toFixed(2) } Miles Away

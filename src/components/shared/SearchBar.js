@@ -14,9 +14,9 @@ const SearchBar = (props) => {
                     <Form.Control 
                         placeholder="Court name"   
                     />
-                    <Form.Text className="text-muted">
+                    {/* <Form.Text className="text-muted">
                     You can filter the court here.
-                    </Form.Text>
+                    </Form.Text> */}
                 </Form.Group>
                 
             </Form>
