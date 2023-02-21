@@ -55,10 +55,11 @@ const ShowCourt = (props) => {
     let reviewCards
     if (court) {
         if (court.review.length > 0) {
+            console.log('this is court.review', court.review)
             reviewCards = court.review.map(review => (
                 <ShowReview
                     ratingAverage={ratingAverage}
-                    key={review.id} 
+                    // key={review.id} 
                     review={review}
                     user={user}
                     court={court}
@@ -85,7 +86,7 @@ const ShowCourt = (props) => {
 
                     <Card.Body>
                             <Row>
-                                <Col>
+                                
                                     
                                 <Card.Text>
                                  
@@ -151,10 +152,6 @@ const ShowCourt = (props) => {
                                     </div> */}
                                     
                                 </Card.Text>
-                                </Col>
-                                <Col>
-                                    <Card.Img src={court.picture[0]}/>
-                                </Col>
                             </Row>
                     </Card.Body>
                     <Card.Footer>
@@ -165,11 +162,6 @@ const ShowCourt = (props) => {
                                 className='m-2' 
                                 onClick={() => setCreateModalShow(true)}>
                                 Leave a Review
-                            </Button>
-                            <Button 
-                                className='m-2' 
-                                onClick={() => setPictureModalShow(true)}>
-                                View Pictures
                             </Button>
                             <Button 
                                 className="m-2" variant="warning"
@@ -187,7 +179,17 @@ const ShowCourt = (props) => {
                 { reviewCards }
                 </Col>
                 <Col>
+                    <div style={{width: '100%'}}>
                     <ShowMap court={court} />
+                    <div style={{backgroundImage: `url(${court.picture[0]})`, backgroundSize: "cover", height: "250px", borderRadius:'15px', border: "1px solid #AC5043"}}>
+                        <button 
+                        className='clear'
+                        onClick={() => setPictureModalShow(true)}
+                        >
+                            View all pictures
+                        </button>
+                    </div>
+                    </div>
                 </Col>
                 </Row>
             </Container>
@@ -206,6 +208,11 @@ const ShowCourt = (props) => {
                 
                 court={court}
                 />
+            <PictureModal 
+                show={pictureModalShow}
+                pictures={court.picture}
+                handleClose={() => setPictureModalShow(false)}
+            />
 
              <NewReviewModal
                 user={user}

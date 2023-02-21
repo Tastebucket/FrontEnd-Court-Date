@@ -26,7 +26,7 @@ return (
 <>
     <Map
     mapboxAccessToken= {process.env.REACT_APP_MAPBOX_TOKEN}
-    style={{ marginLeft: "5%", justifyContent: "center", width: "90%", height: "400px" }}
+    style={{ marginBottom: '5%', justifyContent: "center", width: "100%", height: "400px", border: "1px solid #AC5043", borderRadius: "15px" }}
     initialViewState={{ longitude: lng, latitude: lat, zoom: 12 }}
     mapStyle="mapbox://styles/mapbox/streets-v9"
     >
