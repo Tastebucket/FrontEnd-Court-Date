@@ -88,10 +88,10 @@ p{
   cursor: pointer;
 }
 
+
 .card-body {
   background-color: #DCB5AE;
 }
-
 
 nav a {
   transition: 0.4s ease
@@ -100,4 +100,13 @@ nav a:hover {
   margin:0;
   padding: 20px 0; 
   background-color: #4D3531;
+}
+
+.logo {
+  position: relative;
+  width: 50px;
+  height: 50px; 
+  box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); 
+  overflow: hidden;
+  z-index: auto;
 }

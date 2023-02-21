@@ -50,9 +50,9 @@ const alwaysOptions = (
 const Header = ({ user }) => (
 	<Navbar variant='dark' expand='md' className='brown'>
 		<Navbar.Brand className='ms-2'>
-            <Link to='/' style={linkStyle}>
-                Court Date
-            </Link>
+            Court Date
+				<img src='http://clipart-library.com/2018/basketball-clipart-24.png' className='logo'/>
+            
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
