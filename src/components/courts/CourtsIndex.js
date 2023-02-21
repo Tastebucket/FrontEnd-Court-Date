@@ -3,11 +3,8 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import SearchBar from '../shared/SearchBar'
-<<<<<<< HEAD
 import { dist } from '../shared/Distance'
-=======
 import Rating from '../shared/Rating'
->>>>>>> ac12f6678e7e106621260124024b78fb24ecaec2
 
 // api function from our api file
 import { getAllCourts } from '../../api/courts'
@@ -218,16 +215,16 @@ const CourtsIndex = (props) => {
                     handleChange={onChange}
                     // handleDelete={handleDelete}
                 />
-                <DistanceFilter
+                <DistanceFilter 
                     setDistance={setDistance}
                 />
                 <Row>
-                    <Col className='p-0'>
+                    <Col className='mt-4 p-0'>
                         <div className="container-md overflow-auto" style={{ height:'600px'}}>
                             { courtCards }
                         </div>
                     </Col>
-                    <Col className='p-0'>
+                    <Col className='mt-4 p-0'>
                         <Container fluid="sm" style={{display: "flex", justifyContent: "center"}}>
                             <Mapping courts = {courts} latit={lat} longit={lng} filter={distanceFilter}/>
                         </Container>

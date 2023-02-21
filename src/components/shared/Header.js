@@ -41,7 +41,7 @@ const alwaysOptions = (
 	<>
 		<Nav.Item className='m-2'>
 			<Link to='/' style={linkStyle}>
-				Home
+				 Home &#127968;
 			</Link>
 		</Nav.Item>
 	</>
@@ -51,8 +51,7 @@ const Header = ({ user }) => (
 	<Navbar variant='dark' expand='md' className='brown'>
 		<Navbar.Brand className='ms-2'>
             Court Date
-				<img src='http://clipart-library.com/2018/basketball-clipart-24.png' className='logo'/>
-            
+			<img src='http://clipart-library.com/2018/basketball-clipart-24.png' className='logo'/>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
