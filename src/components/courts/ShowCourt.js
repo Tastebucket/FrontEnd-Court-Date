@@ -14,10 +14,12 @@ import ShowMap from '../maps/ShowMap'
 import UploadWidget from '../shared/UploadWidget'
 import Rating from '../shared/Rating'
 import { ShowRating } from '../shared/ShowRating'
+import PictureModal from '../shared/PictureModal'
 
 const ShowCourt = (props) => {
     const [court, setCourt] = useState(null)
     const [editModalShow, setEditModalShow] = useState(false)
+    const [pictureModalShow, setPictureModalShow] = useState(false)
     const [createModalShow, setCreateModalShow] = useState(false)
     const [updated, setUpdated] = useState(false)
 
@@ -26,11 +28,11 @@ const ShowCourt = (props) => {
 
     const { user, msgAlert } = props
    
-    const uploadPhoto =
+
 
     useEffect(() => {
         getOneCourt(id)
-            .then(res => setCourt(res.data.court))
+        .then(res => setCourt(res.data.court))
             .catch(err => {
                 msgAlert({
                     heading: 'Error getting courts',
@@ -143,8 +145,9 @@ const ShowCourt = (props) => {
                                     </div>
                                     {/* <div>
                                         <small>
-                                            Reviews: { reviewCards }
+                                            Average rating: <Rating court={court} />
                                         </small>
+
                                     </div> */}
                                     
                                 </Card.Text>
@@ -164,6 +167,11 @@ const ShowCourt = (props) => {
                                 Leave a Review
                             </Button>
                             <Button 
+                                className='m-2' 
+                                onClick={() => setPictureModalShow(true)}>
+                                View Pictures
+                            </Button>
+                            <Button 
                                 className="m-2" variant="warning"
                                 onClick={() => setEditModalShow(true)}>
                                 Edit {court.name}
@@ -176,15 +184,18 @@ const ShowCourt = (props) => {
                         }
                     </Card.Footer>
                 </Card>
+                { reviewCards }
                 </Col>
                 <Col>
                     <ShowMap court={court} />
                 </Col>
                 </Row>
             </Container>
+
                 <div className='container'>
                     Reviews: { reviewCards }                    
                 </div>
+
             <EditCourtModal 
                 user={user}
                 show={editModalShow}
@@ -192,9 +203,9 @@ const ShowCourt = (props) => {
                 updateCourt={updateCourt}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-
+                
                 court={court}
-            />
+                />
 
              <NewReviewModal
                 user={user}
@@ -203,7 +214,7 @@ const ShowCourt = (props) => {
                 handleClose={() => setCreateModalShow(false)}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-            />
+                />
         </>
     )
 }
