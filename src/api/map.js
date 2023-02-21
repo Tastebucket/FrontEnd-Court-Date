@@ -9,13 +9,31 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
 // import * as CourtsIndex from "src/components/courts/CourtsIndex.js"
 
 export const Mapping = (props) => {
-const { courts, longit, latit } = props
+const [zoom,setZoom] = useState(13)
+const { courts, longit, latit, filter} = props
 // console.log('these are the courts', courts)
-
+console.log(' this is zoom', zoom)
+const onZoom = ()=>{
+    console.log('on zoom ran')
+    if (filter == 1) {
+        setZoom(13)
+    } else if (filter == 5) {
+        setZoom(11)
+    } else if (filter == 25) {
+        setZoom(9)
+    } else if (filter == 50) {
+        setZoom(7)
+    } else {
+        setZoom(4)
+    }
+}
+useEffect(() =>{
+    onZoom()
+})
 
 const handleRetrieve = useCallback(
     (res) => {
-    //   console.log('these are res features',res)
+      console.log('these are res features',res)
     }
 )
 // const geocoder = geocoding({ accessToken: 'pk.eyJ1Ijoiam9zaHVhaGFycmlzMTEwMyIsImEiOiJjbGU1cTQ5OGUwOWJrM3V0YzlhYml3Znk1In0.RWn3-nWxtA6_obodRSjaXg' })
@@ -44,9 +62,10 @@ return (
 <>
     <Map
     mapboxAccessToken= {process.env.REACT_APP_MAPBOX_TOKEN}
-    style={{ marginLeft: "5%", justifyContent: "center", width: "80%", height: "350px", borderRadius: "10px", border: "none"}}
-    initialViewState={{ longitude: longit, latitude: latit, zoom: 12 }}
+    style={{ width: "100%", height: "600px",  border: "none"}}
+    initialViewState={{ longitude: longit, latitude: latit, zoom: zoom}}
     mapStyle="mapbox://styles/mapbox/streets-v9"
+    zoom={zoom}
     >
     {mapMarkers}
     <NavigationControl position="bottom-right" />
