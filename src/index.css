@@ -87,6 +87,12 @@ p{
   border-radius: 50%;
   cursor: pointer;
 }
+
+
+.card-body {
+  background-color: #DCB5AE;
+}
+
 nav a {
   transition: 0.4s ease
 }
