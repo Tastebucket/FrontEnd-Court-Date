@@ -140,7 +140,7 @@ const CreateCourt = (props) => {
             // we'll also send a success message
             .then(() => {
                 msgAlert({
-                    heading: 'Oh Yeah!',
+                    heading: 'Yahoo!',
                     message: createCourtSuccess,
                     variant: 'success'
                 })
@@ -148,14 +148,14 @@ const CreateCourt = (props) => {
             // if there is an error, tell the user about it
             .catch(() => {
                 msgAlert({
-                    heading: 'Oh No!',
+                    heading: 'Dagnabbit!',
                     message: createCourtFailure,
                     variant: 'danger'
                 })
             })
         } else {
             msgAlert({
-                heading: 'Oh No!',
+                heading: 'Uh oh!',
                 message: "Please choose a valid address",
                 variant: 'danger'
             })

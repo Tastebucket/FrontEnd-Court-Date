@@ -9,7 +9,7 @@ const Home = (props) => {
 	return (
 		<>
 			
-			<CourtsIndex className='background' msgAlert= { props.msgAlert }/>
+			<CourtsIndex className='background' msgAlert= { props.msgAlert } user={user}/>
 			
 		</> 
 	)

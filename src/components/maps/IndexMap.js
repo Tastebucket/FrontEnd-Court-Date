@@ -10,7 +10,7 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
 // import * as CourtsIndex from "src/components/courts/CourtsIndex.js"
 
 export const IndexMap = (props) => {
-const { courts, longit, latit, zoom} = props
+const { courts, longit, latit, zoom, user} = props
 const [selectedCourt, setSelectedCourt] = useState(null)
 // console.log('these are the courts', courts)
 console.log(' this is zoom', zoom)
@@ -53,10 +53,17 @@ if (!longit || !latit) {
                 }} >
                     <div>
                         <h5>{selectedCourt.name}</h5>
-                        <Link style={{position:'relative', float:'right'}}to={`/courts/${selectedCourt._id}`} className="orange-link">View</Link>
+                        {user ? <Link 
+                                    style={{position:'relative',
+                                    float:'right'}}
+                                    to={`/courts/${selectedCourt._id}`}
+                                    className="orange-link">
+                                    View
+                                </Link> : null}
                         <p>{selectedCourt.surface}</p>
                         <p>{selectedCourt.numberOfCourts} courts</p>
                         <p>{selectedCourt.numberOfHoops} hoops</p>
+                        
                         <img style={{width: '80%'}}src={selectedCourt.picture[0]} />
                     </div>    
                 </Popup>
@@ -76,7 +83,6 @@ return (
     zoom={zoom}
     >
     {mapMarkers}
-    <NavigationControl position="bottom-right" />
     <FullscreenControl />
     <GeolocateControl trackUserLocation onGeolocate={handleRetrieve} />
     </Map>

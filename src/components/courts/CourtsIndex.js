@@ -41,9 +41,9 @@ const CourtsIndex = (props) => {
 
     // console.log('these are the courts in index', courts)
     // pull the message alert (msgAlert) from props
-    const { msgAlert } = props
+    const { user, msgAlert } = props
     const geolocationAPI = navigator.geolocation
-    
+    console.log('this is user', user)
     const setDistance = (e) => {
         const filter = e.target.value
         console.log('this is filter',filter)
@@ -141,14 +141,9 @@ const CourtsIndex = (props) => {
         }
         )
         })
-        console.log('these are the court distances', courtDist)
         let courty = courtDist.sort((a,b) => (a.milesAway > b.milesAway) ? 1 : -1)
-        console.log('these are the court distances sorted', courty)
         courtCards = courtDist.map(court => {
             const distance = dist(lat, court.theCourt.latitude, lng, court.theCourt.longitude)
-            console.log(`${distance} miles away`)
-            console.log('this is court.latitude', court.theCourt.latitude)
-            console.log('this is the lat from state', lat)
             if (court.milesAway<= distanceFilter) {
                 return (
                 <Card key={ court.theCourt._id } style={{ width: '100%', margin: 0, borderRadius:'0'}}>
@@ -169,9 +164,11 @@ const CourtsIndex = (props) => {
                                 {/* <Card.Text> (when ratings are setup)
                                     {court.rating}
                                 </Card.Text> */}
-                                <Card.Text>
-                                    <Link to={`/courts/${court.theCourt._id}`} className="orange-link">View { court.theCourt.name }</Link>
-                                </Card.Text>
+                                {user ? (
+                                    <Card.Text>
+                                        <Link to={`/courts/${court.theCourt._id}`} className="orange-link">View { court.theCourt.name }</Link>
+                                    </Card.Text>
+                                ): null}
                             </Col>
                             <Col>
                             <Card.Img src={court.theCourt.picture[0]} style={{borderRadius:'5px'}}/>
@@ -187,7 +184,7 @@ const CourtsIndex = (props) => {
 
     return (
         <> 
-            <div className='container-lg p-4'>
+            <div className='container-lg p-4' style={{height:'90vh'}}>
                 <SearchBar 
                     handleChange={onChange}
                     // handleDelete={handleDelete}
@@ -197,13 +194,13 @@ const CourtsIndex = (props) => {
                 />
                 <Row>
                     <Col className='mt-4 p-0'>
-                        <div className="container-md overflow-auto" style={{ height:'600px'}}>
+                        <div className="container-md overflow-auto" style={{ maxHeight:'600px'}}>
                             { courtCards }
                         </div>
                     </Col>
                     <Col className='mt-4 p-0'>
                         <Container fluid="sm" style={{display: "flex", justifyContent: "center"}}>
-                            <IndexMap courts = {courts} latit={lat} longit={lng} zoom={zoom}/>
+                            <IndexMap courts = {courts} latit={lat} longit={lng} zoom={zoom} user={user}/>
                         </Container>
                     </Col>
                 </Row>
