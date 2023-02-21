@@ -151,8 +151,8 @@ const CourtsIndex = (props) => {
             console.log('this is the lat from state', lat)
             if (court.milesAway<= distanceFilter) {
                 return (
-                <Card key={ court.theCourt._id } style={{ width: '100%', margin: 0 }}>
-                    <Card.Header style={{ backgroundColor: '#FC9047'}}><h5>{ court.theCourt.name }</h5></Card.Header>
+                <Card key={ court.theCourt._id } style={{ width: '100%', margin: 0, borderRadius:'0'}}>
+                    <Card.Header style={{ backgroundColor: '#FC9047', borderRadius:'0'}}><h5>{ court.theCourt.name }</h5></Card.Header>
                     <Card.Body>
                         <Row>
                             <Col>
@@ -174,7 +174,7 @@ const CourtsIndex = (props) => {
                                 </Card.Text>
                             </Col>
                             <Col>
-                            <Card.Img src={court.theCourt.picture[0]}/>
+                            <Card.Img src={court.theCourt.picture[0]} style={{borderRadius:'5px'}}/>
                             </Col>
                         </Row>
                     </Card.Body>
