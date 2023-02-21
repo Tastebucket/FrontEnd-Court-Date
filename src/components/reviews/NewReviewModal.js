@@ -5,6 +5,7 @@ import { createReview } from '../../api/reviews'
 import messages from '../shared/AutoDismissAlert/messages'
 import Rating from '../shared/Rating'
 
+
 const NewReviewModal = (props) => {
     const { court, show, handleClose, msgAlert, triggerRefresh, user } = props
 
@@ -59,7 +60,7 @@ const NewReviewModal = (props) => {
             <Modal.Header closeButton />
             <Modal.Body>
                 Court Rating:
-                <Rating />
+                <Rating court={court} user={user} />
                 <ReviewForm 
                     review={review}
                     handleChange={onChange}

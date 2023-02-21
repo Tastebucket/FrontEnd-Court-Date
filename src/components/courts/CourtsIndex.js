@@ -3,12 +3,8 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
 import SearchBar from '../shared/SearchBar'
-<<<<<<< HEAD
-import Rating from '../shared/rating'
 import { dist } from '../shared/Distance'
-=======
 import Rating from '../shared/Rating'
->>>>>>> ac12f6678e7e106621260124024b78fb24ecaec2
 
 // api function from our api file
 import { getAllCourts } from '../../api/courts'
@@ -123,14 +119,10 @@ const CourtsIndex = (props) => {
         console.log('this is the lat from state', lat)
         return (
         <Card key={ court._id } style={{ width: '30%', margin: 5 }}>
-            <Card.Header>{ court.name }</Card.Header>
+            <Card.Header style={{ backgroundColor: '#FC9047'}}><h5>{ court.name }</h5></Card.Header>
             <Card.Body>
                 <Card.Text >
                     {court.location}
-                </Card.Text>
-                <Card.Text>
-                    Court Rating:
-                    <Rating />
                 </Card.Text>
                 <Card.Text>
                     { distance.toFixed(2) } Miles Away
