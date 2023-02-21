@@ -55,30 +55,6 @@ const CourtForm = (props) => {
                     />
                 </Form.Group> */}
                 <Form.Group className="m-2">
-                    <Form.Check 
-                        label="Does this court have nets?"
-                        name="nets"
-                        defaultChecked={ court.nets }
-                        onChange={handleChange}
-                        />
-                </Form.Group>
-                <Form.Group className="m-2">
-                    <Form.Check 
-                        label="Does this court have lights?"
-                        name="hasLight"
-                        defaultChecked={ court.hasLight }
-                        onChange={handleChange}
-                        />
-                </Form.Group>
-                <Form.Group className="m-2">
-                    <Form.Check 
-                        label="Is this court indoor?"
-                        name="isIndoor"
-                        defaultChecked={ court.isIndoor }
-                        onChange={handleChange}
-                    />
-                </Form.Group>
-                <Form.Group className="m-2">
                     <Form.Label>Cost:</Form.Label>
                     <Form.Control
                         type="number" 
@@ -143,6 +119,30 @@ const CourtForm = (props) => {
                         <option value="single">Single Rim</option>
                         <option value="double">Double Rim</option>
                     </Form.Select>
+                </Form.Group>
+                <Form.Group className="m-2">
+                    <Form.Check 
+                        label="Does this court have nets?"
+                        name="nets"
+                        defaultChecked={ court.nets }
+                        onChange={handleChange}
+                        />
+                </Form.Group>
+                <Form.Group className="m-2">
+                    <Form.Check 
+                        label="Does this court have lights?"
+                        name="hasLight"
+                        defaultChecked={ court.hasLight }
+                        onChange={handleChange}
+                        />
+                </Form.Group>
+                <Form.Group className="m-2">
+                    <Form.Check 
+                        label="Is this court indoor?"
+                        name="isIndoor"
+                        defaultChecked={ court.isIndoor }
+                        onChange={handleChange}
+                    />
                 </Form.Group>
                 <Button className="m-2" type="submit">Submit</Button>
             </Form>
