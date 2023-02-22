@@ -4,10 +4,7 @@ import { useState, useCallback, useEffect } from "react"
 import LoadingScreen from "../shared/LoadingScreen"
 import { Card, Row, Col } from "react-bootstrap"
 import { Link } from "react-router-dom"
-// import { geocoding } from '@mapbox/mapbox-sdk/services/geocoding'
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
-// import * as CourtsIndex from "src/components/courts/CourtsIndex.js"
+
 
 export const IndexMap = (props) => {
 const { courts, longit, latit, zoom, user} = props
