@@ -2,8 +2,7 @@ import "mapbox-gl/dist/mapbox-gl.css"
 import Map, { Marker, NavigationControl, Popup, FullscreenControl, GeolocateControl } from "react-map-gl"
 import { useState, useCallback, useEffect } from "react"
 import LoadingScreen from "../shared/LoadingScreen"
-// eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default
+
 export const ShowMap = (props) => {
 const { court } = props
 const [lng, setLng] = useState(court.longitude)

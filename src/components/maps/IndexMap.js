@@ -5,8 +5,7 @@ import LoadingScreen from "../shared/LoadingScreen"
 import { Card, Row, Col } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
-// eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default
+
 
 
 export const IndexMap = (props) => {
