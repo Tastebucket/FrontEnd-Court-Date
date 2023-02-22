@@ -3,11 +3,6 @@ import Map, { Marker, NavigationControl, Popup, FullscreenControl, GeolocateCont
 import { useState, useCallback, useEffect } from "react"
 import LoadingScreen from "../shared/LoadingScreen"
 
-// import { geocoding } from '@mapbox/mapbox-sdk/services/geocoding'
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css'
-// import * as CourtsIndex from "src/components/courts/CourtsIndex.js"
-
 export const ShowMap = (props) => {
 const { court } = props
 const [lng, setLng] = useState(court.longitude)
