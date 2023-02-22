@@ -8,7 +8,7 @@ const {setDistance} = props
         <div>
             <Form>
             <Form.Group className="m-2">
-                <Form.Label>Find court within:</Form.Label>
+                <Form.Label>Find courts within:</Form.Label>
                     <Form.Select 
                         aria-label="filter-distance"
                         name="distance"

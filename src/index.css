@@ -73,9 +73,15 @@ html{
 .clear {
   background-color: transparent;
   text-decoration: none;
+  border-radius:'15px';
   color: #FFF7F6;
   padding: 5px;
   font-weight: 500;
+}
+
+.clear:hover {
+  background-color: #DCB5AE;
+  border-radius: 25%;
 }
 
 .orange {
